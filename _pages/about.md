@@ -1,6 +1,6 @@
 ---
 permalink: /
-title: "About Me"
+# title: "About Me"
 excerpt: "Benj's Portfolio"
 author_profile: true
 redirect_from: 

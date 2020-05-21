@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "About Me"
+title                    : "Benj's Portfolio"
 title_separator          : "-"
 name                     : &name "Benj"
 description              : &description "Data Scientist's Repository of Personal Projects"
