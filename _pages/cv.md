@@ -13,7 +13,6 @@ redirect_from:
 education
 ======
 * M.Sc. in Data Science, Asian Institute of Management, 2020
-
 * B.Sc. in Materials Engineering, University of the Philippines Diliman, 2016
 * Secondary Education, Philippine Science High School, 2011
 <br><br>
@@ -29,7 +28,7 @@ Procurement and Supply Chain Specialist
   * Shifted time spent making transaction reports into efficient analysis and faster decision making through the creation of a report tool/dashboard. 
   * Reduced the team’s turnaround time for projects by initiating improvement in processes and procurement strategies. 
 
-<br>**Maersk Supply Service**, 2016 - 2017
+<br>**Maersk Supply Service**, 2016 - 2017<br>
 Materials Buyer
 * Prepare strategies and execution plans to oversee the full array of materials buying and procurement functions – from purchasing, quality control, traffic and logistics, to catalog master data management.
 
@@ -71,4 +70,4 @@ management skills
 
 resume
 ======
-download a copy of my resume [here](/files/benj-resume-2020)
+download a copy of my resume [here](/files/benj-resume-2020.pdf)
