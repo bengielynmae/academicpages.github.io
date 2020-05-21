@@ -9,51 +9,57 @@ redirect_from:
 
 {% include base_path %}
 
-Education
+education
 ======
-* B.S. in GitHub, GitHub University, 2012
-* M.S. in Jekyll, GitHub University, 2014
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
+* Master of Science in Data Science, Asian Institute of Management, 2020
+* Bachelor of Science in Materials Engineering, University of the Philippines Diliman, 2016
+* Secondary Education, Philippine Science High School, 2011
 
-Work experience
+work experience
 ======
-* Summer 2015: Research Assistant
-  * Github University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
 
-* Fall 2015: Research Assistant
-  * Github University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+**Chevron Philippines**, 2017 - 2019
+Procurement and Supply Chain Specialist
+* Provide supply chain support as a category manager and project manager for different operating groups (drilling, lubricants, and refinery).
+* Manage the enterprise-wide operating groups’ procurement process for assigned commodities/services and capital projects. This includes global market research and price/cost analysis.
+*key achievements*
+* Shifted time spent making transaction reports into efficient analysis and faster decision making through the creation of a report tool/dashboard. 
+* Reduced the team’s turnaround time for projects by initiating improvement in processes and procurement strategies. 
 
-Publications
-======
-  <ul>{% for post in site.publications %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
+**Maersk Supply Service**, 2016 - 2017
+Materials Buyer
+* Prepare strategies and execution plans to oversee the full array of materials buying and procurement functions – from purchasing, quality control, traffic and logistics, to catalog master data management.
+
+*key achievements*
+* Significantly reduced off-contract spend by managing the elimination of free text requests and enforcing catalog utilization – guaranteeing procured items are covered by existing negotiated prices.
+* Increased savings by 25% on provision items by launching an improved ordering process leveraging on forecasting and supplier management.
   
-Talks
+**NXP Semiconductors (NEXPERIA Philippines Inc.)**, Summer 2015
+Quality and Reliability Engineering Intern
+* Analyze failure reports, solve quality issues, and propose improvements of production line processes
+
+*key achievements*
+* Promoted early detection of defects by designing material testing methods in every step to measure reliability of devices and maintain industry standards.
+
+technical skills
 ======
-  <ul>{% for post in site.talks %}
-    {% include archive-single-talk-cv.html %}
-  {% endfor %}</ul>
-  
-Teaching
+* SQL, Python (Pandas, Matplotlib, Scikit Learn, Tensorflow, Keras)
+* Basic Web Development (HTML, CSS, JavaScript)
+* Machine Learning Frameworks
+* Data Mining and Wrangling 
+* Big Data and Cloud Computing
+* Statistical Data Analysis
+* Mathematical Modelling
+* Geospatial Analysis
+* Natural Language Processing
+* Data Warehousing and ETL
+
+management skills
 ======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Data Visualization/Storytelling
+* Project Management
+* Strategic Planning
+* Negotiating/Networking
+* Presentation/Communication
+* Team Management
+
