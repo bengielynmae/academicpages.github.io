@@ -13,6 +13,7 @@ redirect_from:
 education
 ======
 * M.Sc. in Data Science, Asian Institute of Management, 2020
+
 * B.Sc. in Materials Engineering, University of the Philippines Diliman, 2016
 * Secondary Education, Philippine Science High School, 2011
 <br><br>
@@ -66,4 +67,8 @@ management skills
 * Negotiating/Networking
 * Presentation/Communication
 * Team Management
+<br><br>
 
+resume
+======
+download a copy of my resume [here](/files/benj-resume-2020)
