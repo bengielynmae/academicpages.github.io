@@ -1,6 +1,6 @@
 ---
 layout: archive
-title: "cv"
+title: "career history"
 permalink: /cv/
 author_profile: true
 redirect_from:
@@ -27,16 +27,16 @@ Procurement and Supply Chain Specialist
   *key achievements*
   * Shifted time spent making transaction reports into efficient analysis and faster decision making through the creation of a report tool/dashboard. 
   * Reduced the team’s turnaround time for projects by initiating improvement in processes and procurement strategies. 
-<br><br>
-**Maersk Supply Service**, 2016 - 2017
+
+<br><br>**Maersk Supply Service**, 2016 - 2017
 Materials Buyer
 * Prepare strategies and execution plans to oversee the full array of materials buying and procurement functions – from purchasing, quality control, traffic and logistics, to catalog master data management.
 
   *key achievements*
   * Significantly reduced off-contract spend by managing the elimination of free text requests and enforcing catalog utilization – guaranteeing procured items are covered by existing negotiated prices.
   * Increased savings by 25% on provision items by launching an improved ordering process leveraging on forecasting and supplier management.
-<br><br>
-**NXP Semiconductors (NEXPERIA Philippines Inc.)**, Summer 2015<br>
+
+<br><br>**NXP Semiconductors (NEXPERIA Philippines Inc.)**, Summer 2015<br>
 Quality and Reliability Engineering Intern
 * Analyze failure reports, solve quality issues, and propose improvements of production line processes
 
