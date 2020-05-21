@@ -28,8 +28,8 @@ Procurement and Supply Chain Specialist
   * Shifted time spent making transaction reports into efficient analysis and faster decision making through the creation of a report tool/dashboard. 
   * Reduced the team’s turnaround time for projects by initiating improvement in processes and procurement strategies. 
 
-<br>**Maersk Supply Service**, 2016 - 2017<br>
-Materials Buyer
+<br>**Maersk Supply Service**, 2016 - 2017
+<br>Materials Buyer
 * Prepare strategies and execution plans to oversee the full array of materials buying and procurement functions – from purchasing, quality control, traffic and logistics, to catalog master data management.
 
   *key achievements*
