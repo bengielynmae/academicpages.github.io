@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "benj's portfolio"
+title                    : "Benj's Portfolio"
 title_separator          : "-"
 name                     : &name "Benj"
 description              : &description "Data Scientist's Repository of Personal Projects"
@@ -80,7 +80,7 @@ analytics:
 
 # Site Author
 author:
-  name             : "Benj"
+  name             : "Benj Danao"
   avatar           : "bengielyn-profile.png"
   bio              : "Data Scientist, Data Storyteller, Materials Engineer"
   location         : "Manila, Philippines"
