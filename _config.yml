@@ -7,7 +7,7 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Personal Portfolio"
+title                    : "About Me"
 title_separator          : "-"
 name                     : &name "Benj"
 description              : &description "Data Scientist's Repository of Personal Projects"
@@ -87,7 +87,7 @@ author:
   employer         :
   pubmed           : # "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
   googlescholar    : # "http://yourfullgooglescholarurl.com"
-  email            : "bengielyndanao@gmail.com"
+  email            : # "bengielyndanao@gmail.com"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
