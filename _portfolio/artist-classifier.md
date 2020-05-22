@@ -1,6 +1,6 @@
 ---
 title: "Whose Art Is It?"
-excerpt: "This is a deployment of the DeepArtist model to a simple web application using flask. The algorithm, which trained on `ResNet50`, identifies the artist when shown a painting.<br/><br><img src='/images/artist-classifier/artist-classifier-titlecard.png' width='800' height='600'>"
+excerpt: "This is a deployment of the DeepArtist model to a simple web application using flask. The algorithm, which trained on `ResNet50`, identifies the artist when shown a painting.<br/><br><img src='/images/artist-classifier/titlecard.png' width='800' height='600'>"
 collection: portfolio
 ---
 
@@ -16,15 +16,15 @@ This web app can identify paintings as old as 1471 with styles ranging from **re
 <h2>Web App</h2>
 This is how the web app looks like: 
 
-<img src='/images/artist-classifier/artist-classifier-home-page.png' width='800' height='600'>
+<img src='/images/artist-classifier/artist-classifier-home-page.png' width='900' height='800'>
 
 You can choose an image file of any painting from your desktop/device. 
 
-<img src='/images/artist-classifier/artist-classifier-upload.png' width='800' height='600'>
+<img src='/images/artist-classifier/artist-classifier-upload.png' width='900' height='800'>
 
 And then it would tell you who the artist is including the accuracy of that classification. 
 
-<img src='/images/artist-classifier/artist-classifier-prediction.png' width='800' height='600'>
+<img src='/images/artist-classifier/artist-classifier-prediction.png' width='900' height='800'>
 
 
 <h2>Try it for yourself</h2>
