@@ -1,13 +1,13 @@
 ---
-title: "Identifyung Suicide Attempt Predictors Using Machine Learning"
-excerpt: "Using demographic data from a survey in reddit, the top predictors of suicide attempts are identified. Machine learning tries to predict a result of complex social, psychological, and biological interactions.<br/><br><img src='/images/suice-predictors/cover.png' width='800' height='600'>"
+title: "Machine Learning Identifies Top Predictors of Suicide Attempts"
+excerpt: "Using demographic data from a survey in reddit, the top predictors of suicide attempts are identified. Machine learning tries to predict a result of complex social, psychological, and biological interactions.<br/><br><img src='/images/suicide-predictors/cover.png' width='800' height='600'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. This study confirms that a machine learning model on mental health data (if made available) is capable of identifying predictors of suicide attempts and other critical suicide risk such as self-harm. This was presented to class in August 2019.</p>
+<p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. This study confirms that machine learning can be used on mental health data (if made available). It is capable of identifying predictors of suicide attempts and other critical suicide risk such as self-harm. This was presented to class in August 2019.</p>
 
-<img src='/images/suicide-predictors/poster.png'>
+<img src='/images/suicide-predictors/poster.png' width='800' height='1900'><br><br>
 
 
 # Identifying Suicide Attempt Predictors using Machine Learning
@@ -15,7 +15,7 @@ collection: portfolio
 Prepared by Bengielyn Danao
 
 ## Executive Summary
-Suicide and suicide attempts is very challenging to predict because it is an end result of complex social, psychological, and biological interactions. Statistically speaking, it is also rare in terms of reported instances. Machine learning is now put forward as a tool that could improve the accuracy of predicting suicide and its predictors. An existing study from the Department of Psychiatry, University of Texas Health Science Center used information from 144 subjects and got an accuracy of 72%. Similarly, this study has used demographic data from a survey of `496 respondents`. Using the `Random Forest Classifier`, an accuracy of `81%` has been obtained and identified `depression` as the highest predictor of suicide attempts. 
+Suicide and suicide attempts are very challenging to predict because it is an end result of complex social, psychological, and biological interactions. Statistically speaking, it is also rare in terms of reported instances. Machine learning is now put forward as a tool that could improve the accuracy of predicting suicide and its predictors. An existing study from the Department of Psychiatry, University of Texas Health Science Center used information from 144 subjects and got an accuracy of 72%. Similarly, this study has used demographic data from a survey of **496 respondents**. Using the **Random Forest Classifier**, an accuracy of 81% has been obtained and the model identified **depression** as the highest predictor of suicide attempts. 
 
 ## Data Source
 
@@ -39,43 +39,10 @@ The demographic data was collected from a survey of subscribers of the subreddit
 * Education level
 * What have you done to improve yourself? (string) 
 
-There were a total of `496` user participants of this survey and the dataset is available in `Kaggle` or in the link below. 
+There were a total of `496` user participants of this survey and the dataset is available in `Kaggle` or in this [link](https://lionbridge.ai/datasets/12-free-demographic-datasets-for-machine-learning/).
 
 
-https://lionbridge.ai/datasets/12-free-demographic-datasets-for-machine-learning/
-
-## Importing Libraries
-
-
-```python
-import pandas as pd
-import numpy as np
-import matplotlib as mpl
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-%matplotlib inline
-
-from warnings import filterwarnings
-filterwarnings('ignore')
-
-import importlib
-```
-
-## Loading the dateset
-
-
-```python
-df = pd.read_csv('foreveralone.csv')
-```
-
-
-```python
-df.head()
-```
-
-
-
+## Sample data
 
 <div>
 <style scoped>
@@ -235,7 +202,7 @@ df.head()
 
 ## Data Cleaning
 
-Columns that were not deemed determinate of the target variable (`suicide attempts`) were dropped and column names were renamed as needed. 
+Columns that were not deemed determinate of the target variable (suicide attempt) were dropped and column names were renamed as needed. 
 
 
 ```python
@@ -248,7 +215,7 @@ clean_dum = dummy.drop(drop_col, axis=1)
 clean_dum = clean_dum.rename(columns={'sexuallity':'sexuality', 'friends':'# of friends', 'what_help_from_others':'want_help', 'edu_level':'education', 'improve_yourself_how':'willing_to_improve'})
 ```
 
-The variable `what help from others` was also changed to binary. The phrase `I don't want help` was filtered and was categorized as a negative outcome (non-help) and all the rest be positive outcomes. The same was done for the column `improve yourself how` using the keyword `None` to identify negative outcomes and all the rest as positive outcomes. 
+The variable `"what help from others"` was also changed to binary. The phrase `"I don't want help"` was filtered and was categorized as a negative outcome (non-help) and all the rest be positive outcomes. The same was done for the column `"improve yourself how"` using the keyword `"None"` to identify negative outcomes and all the rest as positive outcomes. 
 
 
 ```python
@@ -441,155 +408,12 @@ clean_dum['depressed'] = clean_dum['depressed'].map(depressed_map)
 
 
 ```python
-clean_dum.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>gender</th>
-      <th>sexuality</th>
-      <th>age</th>
-      <th>income</th>
-      <th>race</th>
-      <th>bodyweight</th>
-      <th>virgin</th>
-      <th># of friends</th>
-      <th>social_fear</th>
-      <th>depressed</th>
-      <th>want_help</th>
-      <th>attempt_suicide</th>
-      <th>employment</th>
-      <th>education</th>
-      <th>willing_to_improve</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>male</td>
-      <td>straight</td>
-      <td>35</td>
-      <td>1</td>
-      <td>mixed race</td>
-      <td>2</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>employed</td>
-      <td>2</td>
-      <td>0</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>male</td>
-      <td>bisexual</td>
-      <td>21</td>
-      <td>1</td>
-      <td>mixed race</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>unemployed</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>male</td>
-      <td>straight</td>
-      <td>22</td>
-      <td>1</td>
-      <td>mixed race</td>
-      <td>3</td>
-      <td>1</td>
-      <td>10.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>unemployed</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>male</td>
-      <td>straight</td>
-      <td>19</td>
-      <td>1</td>
-      <td>mixed race</td>
-      <td>3</td>
-      <td>1</td>
-      <td>8.0</td>
-      <td>1</td>
-      <td>1</td>
-      <td>1</td>
-      <td>0</td>
-      <td>student</td>
-      <td>2</td>
-      <td>1</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>male</td>
-      <td>straight</td>
-      <td>23</td>
-      <td>1</td>
-      <td>mixed race</td>
-      <td>3</td>
-      <td>0</td>
-      <td>10.0</td>
-      <td>0</td>
-      <td>1</td>
-      <td>0</td>
-      <td>0</td>
-      <td>employed</td>
-      <td>1</td>
-      <td>0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
-
-```python
 new_dummy = pd.get_dummies(clean_dum)
 ```
-
 
 ```python
 new_dummy.head()
 ```
-
-
 
 
 <div>
@@ -761,26 +585,9 @@ new_dummy.head()
 
 
 
-
-```python
-new_dummy.shape
-```
-
-
-
-
-    (469, 29)
-
-
-
 The `new_dummy` is now the final, cleaned dataframe that will be used in the model. But for now, let us look more into our data. 
 
 ## Exploratory Data Analysis
-
-
-```python
-plt.style.use('https://bit.ly/30XAUWz')
-```
 
 
 ```python
@@ -791,78 +598,6 @@ a_ = df_drop.groupby(['gender','sexuality'])['age'].count().reset_index().pivot(
 ```python
 a_.fillna(0)
 ```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead tr th {
-        text-align: left;
-    }
-
-    .dataframe thead tr:last-of-type th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr>
-      <th></th>
-      <th colspan="3" halign="left">age</th>
-    </tr>
-    <tr>
-      <th>sexuality</th>
-      <th>Bisexual</th>
-      <th>Gay/Lesbian</th>
-      <th>Straight</th>
-    </tr>
-    <tr>
-      <th>gender</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Female</th>
-      <td>20.0</td>
-      <td>4.0</td>
-      <td>49.0</td>
-    </tr>
-    <tr>
-      <th>Male</th>
-      <td>25.0</td>
-      <td>4.0</td>
-      <td>364.0</td>
-    </tr>
-    <tr>
-      <th>Transgender female</th>
-      <td>0.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-    <tr>
-      <th>Transgender male</th>
-      <td>1.0</td>
-      <td>0.0</td>
-      <td>1.0</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 
 ```python
 fig, ax = plt.subplots(1,2, figsize=(16,7))
@@ -896,7 +631,7 @@ plt.tight_layout()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_41_0.png)
+![png](/images/suicide-predictors/gender-sex.png)
 
 
 
@@ -916,7 +651,7 @@ plt.show()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_42_0.png)
+![png](/images/suicide-predictors/age.png)
 
 
 Majority of the respondents are `male` and `straight` and aged from `15-30` 
@@ -964,7 +699,7 @@ plt.tight_layout()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_44_0.png)
+![png](/images/suicide-predictors/improve-help.png)
 
 
 Almost half of the users say they do not want help but 70% are actually willing to improve themselves. This could imply that a significant number of them are uncomfortable of exteranl help or reaching out to someone else. 
@@ -1012,7 +747,7 @@ plt.tight_layout()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_46_0.png)
+![png](/images/suicide-predictors/depression-anxiety.png)
 
 
 Among the participants, more than half identify themselves as depressed and with social fear - which are strong predictors of suicide attempts according to previous studies. 
@@ -1060,7 +795,7 @@ plt.tight_layout()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_48_0.png)
+![png](/images/suicide-predictors/educ-employment.png)
 
 
 More than 75% of the respondents are employed and studying. More than half have / are taking up college and post-graduate degrees. 
@@ -1108,7 +843,7 @@ plt.tight_layout()
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_50_0.png)
+![png](/images/suicide-predictors/race-income.png)
 
 
 Majority of the respondents consider themselves as `low income` earners. 
@@ -1117,69 +852,6 @@ Majority of the respondents consider themselves as `low income` earners.
 ```python
 df_friend = df_drop[['# of friends', 'attempt_suicide']]
 ```
-
-
-```python
-df_friend.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th># of friends</th>
-      <th>attempt_suicide</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0.0</td>
-      <td>Yes</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>10.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>3</th>
-      <td>8.0</td>
-      <td>No</td>
-    </tr>
-    <tr>
-      <th>4</th>
-      <td>10.0</td>
-      <td>No</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 
 ```python
 df_friend_yes = df_friend[df_friend['attempt_suicide']=='Yes']
@@ -1193,7 +865,7 @@ df.loc[df['friends']<=50,:].groupby('attempt_suicide')['friends'].plot.hist(lege
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_55_0.png)
+![png](/images/suicide-predictors/friends.png)
 
 
 
@@ -1202,17 +874,7 @@ df.groupby('social_fear')['friends'].plot.hist(legend=True)
 ```
 
 
-
-
-    social_fear
-    No     AxesSubplot(0.125,0.125;0.775x0.755)
-    Yes    AxesSubplot(0.125,0.125;0.775x0.755)
-    Name: friends, dtype: object
-
-
-
-
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_56_1.png)
+![png](/images/suicide-predictors/social-fear.png)
 
 
 It can be seen from the last two plots above that most people who have attempted suicide have less number of friends compared to those who don't and people with social fear have less friends. 
@@ -1324,18 +986,12 @@ est_list = [150, 250, 350, 550, 750]
 min_samples_leaf = [2, 3, 4]
 max_features = [.5, .3, .2]
 
-# alpha_list = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-# max_depth = np.arange(1,12)
-# n_estimators = [1, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150]
-# learning_rate = [0.01, 0.1, 0.5]
-
 classifiers = [('kNN', knn, {'n_neighbors':kneighbors}),
               ('Logistic Regression (L1)', logres1, {'C':C_list}),
               ('Logistic Regression (L2)', logres2, {'C':C_list}),
               ('Linear SVM (L1)', linsvc1, {'C':C_list}),
               ('Linear SVM (L2)', linsvc2, {'C':C_list}),
               ('NonLinear SVM (RBF)', svc_rbf, {'C':C_list, 'gamma':gamma_list}),
-#               ('NonLinear SVM (Poly)', svc_poly, {'C':C_list, 'gamma':gamma_list}),
               ('Decision Tree (DT)', dectree, {'max_depth':depth_list}),
               ('Random Forest (RF)', ranfor, {'max_depth':depth_list, 'n_estimators':est_list}),
               ('Gradient Boosting (GBM)', gradboost, {'max_depth':depth_list, 'learning_rate':learn_rate})
@@ -1346,97 +1002,10 @@ classifiers = [('kNN', knn, {'n_neighbors':kneighbors}),
 ```python
 models = {}
 for cls in classifiers: 
-#     print(f'Training {cls}\n')
     gs_cv = model_selection.GridSearchCV(cls[1], param_grid=cls[2], n_jobs=-1, scoring='accuracy')
     gs_cv.fit(X_res, y_res)
     models[cls[0]] = gs_cv
 ```
-
-    Training ('kNN', KNeighborsClassifier(algorithm='auto', leaf_size=30, metric='minkowski',
-               metric_params=None, n_jobs=-1, n_neighbors=5, p=2,
-               weights='uniform'), {'n_neighbors': range(1, 31)})
-    
-    Training ('Logistic Regression (L1)', LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-              intercept_scaling=1, max_iter=1000, multi_class='warn',
-              n_jobs=-1, penalty='l1', random_state=None, solver='liblinear',
-              tol=0.0001, verbose=0, warm_start=False), {'C': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05])})
-    
-    Training ('Logistic Regression (L2)', LogisticRegression(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-              intercept_scaling=1, max_iter=1000, multi_class='warn',
-              n_jobs=-1, penalty='l2', random_state=None, solver='warn',
-              tol=0.0001, verbose=0, warm_start=False), {'C': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05])})
-    
-    Training ('Linear SVM (L1)', LinearSVC(C=1.0, class_weight=None, dual=False, fit_intercept=True,
-         intercept_scaling=1, loss='squared_hinge', max_iter=10000,
-         multi_class='ovr', penalty='l1', random_state=None, tol=0.0001,
-         verbose=0), {'C': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05])})
-    
-    Training ('Linear SVM (L2)', LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
-         intercept_scaling=1, loss='squared_hinge', max_iter=10000,
-         multi_class='ovr', penalty='l2', random_state=None, tol=0.0001,
-         verbose=0), {'C': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05])})
-    
-
-
-    /anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_search.py:841: DeprecationWarning: The default of the `iid` parameter will change from True to False in version 0.22 and will be removed in 0.24. This will change numeric results when test-set sizes are unequal.
-      DeprecationWarning)
-
-
-    Training ('NonLinear SVM (RBF)', SVC(C=1.0, cache_size=200, class_weight=None, coef0=0.0,
-      decision_function_shape='ovr', degree=3, gamma='auto_deprecated',
-      kernel='rbf', max_iter=-1, probability=False, random_state=None,
-      shrinking=True, tol=0.001, verbose=False), {'C': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05]), 'gamma': array([1.00000000e-05, 1.29154967e-04, 1.66810054e-03, 2.15443469e-02,
-           2.78255940e-01, 3.59381366e+00, 4.64158883e+01, 5.99484250e+02,
-           7.74263683e+03, 1.00000000e+05])})
-    
-    Training ('Decision Tree (DT)', DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=None,
-                max_features=None, max_leaf_nodes=None,
-                min_impurity_decrease=0.0, min_impurity_split=None,
-                min_samples_leaf=1, min_samples_split=2,
-                min_weight_fraction_leaf=0.0, presort=False, random_state=None,
-                splitter='best'), {'max_depth': range(3, 10)})
-    
-    Training ('Random Forest (RF)', RandomForestClassifier(bootstrap=True, class_weight=None, criterion='gini',
-                max_depth=None, max_features='auto', max_leaf_nodes=None,
-                min_impurity_decrease=0.0, min_impurity_split=None,
-                min_samples_leaf=1, min_samples_split=2,
-                min_weight_fraction_leaf=0.0, n_estimators='warn', n_jobs=None,
-                oob_score=False, random_state=None, verbose=0,
-                warm_start=False), {'max_depth': range(3, 10), 'n_estimators': [150, 250, 350, 550, 750]})
-    
-
-
-    /anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_search.py:841: DeprecationWarning: The default of the `iid` parameter will change from True to False in version 0.22 and will be removed in 0.24. This will change numeric results when test-set sizes are unequal.
-      DeprecationWarning)
-
-
-    Training ('Gradient Boosting (GBM)', GradientBoostingClassifier(criterion='friedman_mse', init=None,
-                  learning_rate=0.1, loss='deviance', max_depth=3,
-                  max_features=None, max_leaf_nodes=None,
-                  min_impurity_decrease=0.0, min_impurity_split=None,
-                  min_samples_leaf=1, min_samples_split=2,
-                  min_weight_fraction_leaf=0.0, n_estimators=100,
-                  n_iter_no_change=None, presort='auto', random_state=None,
-                  subsample=1.0, tol=0.0001, validation_fraction=0.1,
-                  verbose=0, warm_start=False), {'max_depth': range(3, 10), 'learning_rate': array([0.01      , 0.01895736, 0.03593814, 0.06812921, 0.12915497,
-           0.24484367, 0.46415888, 0.87992254, 1.66810054, 3.16227766])})
-    
-
-
-    /anaconda3/lib/python3.7/site-packages/sklearn/model_selection/_search.py:841: DeprecationWarning: The default of the `iid` parameter will change from True to False in version 0.22 and will be removed in 0.24. This will change numeric results when test-set sizes are unequal.
-      DeprecationWarning)
-
-
 
 ```python
 cols = ['Machine Learning Method', 'Test Accuracy',
@@ -1444,7 +1013,6 @@ cols = ['Machine Learning Method', 'Test Accuracy',
 df_results = pd.DataFrame(columns=cols)
 
 for i, m in enumerate(models):
-#     print(models[m])
     try:
         top_predictor = data.columns[
             np.argmax(np.abs(models[m].best_estimator_.coef_))]
@@ -1568,22 +1136,6 @@ This model is actually a powerful one as it uses many decision trees to make a p
 gs_cv.best_estimator_
 ```
 
-
-
-
-    GradientBoostingClassifier(criterion='friedman_mse', init=None,
-                  learning_rate=0.03593813663804628, loss='deviance',
-                  max_depth=4, max_features=None, max_leaf_nodes=None,
-                  min_impurity_decrease=0.0, min_impurity_split=None,
-                  min_samples_leaf=1, min_samples_split=2,
-                  min_weight_fraction_leaf=0.0, n_estimators=100,
-                  n_iter_no_change=None, presort='auto', random_state=None,
-                  subsample=1.0, tol=0.0001, validation_fraction=0.1,
-                  verbose=0, warm_start=False)
-
-
-
-
 ```python
 df_features = pd.DataFrame(gs_cv.best_estimator_.feature_importances_, index=data.columns).sort_values(0, ascending=True)
 ```
@@ -1594,7 +1146,7 @@ df_features[df_features[0]>0].plot(kind='barh', legend=False);
 ```
 
 
-![png](ML%20Individual%20Project%20-%20Danao_files/ML%20Individual%20Project%20-%20Danao_81_0.png)
+![png](/images/suicide-predictors/top-predictors.png)
 
 
 The prediction model identified `depression` is the highest predictor of suicide attempts followed by `education`. This is consistent with previous studies saying majority of suicide tendencies are found to experience anxiety disorders. Several studies also suggest that academic work and stresses are associated with suicide attempts as well.
@@ -1611,7 +1163,6 @@ from sklearn.metrics import classification_report, confusion_matrix, roc_auc_sco
 ```python
 rfc = RandomForestClassifier()
 rfc.fit(X_res,y_res)
-# predictions
 rfc_predict = rfc.predict(X_test)
 ```
 
@@ -1620,31 +1171,11 @@ rfc_predict = rfc.predict(X_test)
 roc_auc_score(y_test, rfc_predict)
 ```
 
-
-
-
     0.5460992907801419
-
-
 
 
 ```python
 rfc_cv_score = cross_val_score(ranfor, X_res, y_res, cv=5, scoring='roc_auc')
-```
-
-
-```python
-print("=== Confusion Matrix ===")
-print(confusion_matrix(y_test, rfc_predict))
-print('\n')
-print("=== Classification Report ===")
-print(classification_report(y_test, rfc_predict))
-print('\n')
-print("=== All AUC Scores ===")
-print(rfc_cv_score)
-print('\n')
-print("=== Mean AUC Score ===")
-print("Mean AUC Score - Random Forest: ", rfc_cv_score.mean())
 ```
 
     === Confusion Matrix ===
@@ -1682,5 +1213,7 @@ This study is subject to methodological limitations – data from the reddit sur
 
 The study confirms that a machine learning model on mental health data (if made available) is capable of identifying predictors of suicide attempts and other critical suicide risk such as self-harm. Better approaches and algorithms could be tried using a bigger and more comprehensive dataset to further improve results. 
 
+
+<h2>Document</h2>
 
 The presentation deck for this project can be viewed [here](/files/suicide-predictors.pdf).
