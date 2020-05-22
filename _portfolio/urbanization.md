@@ -1,6 +1,6 @@
 ---
 title: "Urbanization in Metro Manila: The Not-So Livable Metropolis"
-excerpt: "A story on how urbanization affects the lives of people.<br/><img src='/images/dvs/urbanization-titlecard.png'>"
+excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><img src='/images/dvs/urbanization-titlecard.png'>"
 collection: portfolio
 ---
 
@@ -32,7 +32,7 @@ Manila actually ranks among the worst in terms of its sustainability score.
 
 <img src='/images/dvs/sustainability-rank.png'>
 
-What can we do to change this? To ensure social mobility and quality of life, we should invest in secondary cities to spread economic growth across regions. A cohesive strategy on urban development is needed to maximize the benefits of agglomeration. Lastly, different sectors should put in mind the economical, spatial, and social dimensions of inclusions. (add closing statement here)
+What can we do to change this? To ensure social mobility and quality of life, we should invest in secondary cities to spread economic growth across regions. A cohesive strategy on urban development is needed to maximize the benefits of agglomeration. Lastly, different sectors should put in mind the economical, spatial, and social dimensions of inclusions. Successful implementation of a strategy requires a concerted effort by different government agencies. Future human development prospects largely depend on how well our growing cities are managed. 
 
 
 
@@ -41,3 +41,4 @@ The full infographic can be accessed [here](/files/urbanization-deck.pdf).
 <h2>Acknowledgements</h2>
 <p>This project was completed together with my learning teammates Bea Palomar and Nigel Silva.</p>
 
+<!---http://hdr.undp.org/en/content/rapid-urbanisation-opportunities-and-challenges-improve-well-being-societies---!>
