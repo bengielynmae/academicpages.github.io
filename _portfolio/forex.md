@@ -1,6 +1,6 @@
 ---
 title: "Predicting the XAU-USD Foreign Exchange Prices"
-excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><br><img src='/images/forex/forex-titlecard.png' width='600' height='500'>"
+excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><br><img src='/images/forex/forex-titlecard.png' width='800' height='600'>"
 collection: portfolio
 ---
 
@@ -219,7 +219,7 @@ We cannot directly use the features for modelling since they will cause the mode
 - trigger*
 - highest attainable price in the next 4 hours
 
-  <font size="9">*confidential information from data source / broker</font>
+  <font size="1">*confidential information from data source / broker</font>
 
 
 ```python
@@ -1131,7 +1131,7 @@ for i, tr in enumerate(trade_results):
 The predictions made from our model resulted in a total profit of (\\$53,855) (54% in 6 months). This is equivalent to an 8% month-on-month growth. These returns are within the average monthly returns of a professional forex trader which ranges between 1- 10% per month. It could also be observed that a larger portion of the trades caused losses which could be attributed to incorrect predictions. However, using the stop loss of 100 pips, the losses were still covered by the correct predictions.
 
 
-## Conclusions and Recommendations
+## Conclusion and Future Work
 
 As some forex trading softwares allows scripting to automate their trades, it is entirely possible to retrain an updated model using latest 2019 data and other deep learning algorithms such as Long Short Term Memory to improve accuracy. These models can then be implemented for automated trading.
 
