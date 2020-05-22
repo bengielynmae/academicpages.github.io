@@ -8,7 +8,7 @@ collection: portfolio
 <p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. We used actual hourly price data from a foreign forex broker to predict the gold price. Various machine learning models were explored and a trade simulation was ran using the last 6 months of the dataset. The simulation from our best model resulted to a 54% return on investments. This study was presented to the public last August 2019. </p>
 
 <h1>Report</h1>
-Foreign exchange (forex) is the largest financial market in the world with a daily average of 5 trillion USD each day versus the largest stock market, New York Stock Exchange, which averages to 75 billion USD only. Forex is a decentralized market, meaning there is no single physical location where investors go to buy or sell currencies. Individuals or retailers can trade forex anywhere and anytime through their laptops or phones. Forex provides favorable leverage that a small amount of money can be used on large trades. This market is the most volatile yet has the highest return possible as well. However, since we don't live in a perfect world, it has the highest risk of losing money as well. One of the most explored foreign exchange problems is the prediction of forex prices (determining whether it will go up or down) of different currency pairs. This is a classification problem with binary values as outputs. Another obvious approach would be to treat it as a time series data. However, this requires working under the assumption that the data is linear and stationary - which is not true for forex prices. Financial time series are inherently noisy and unstable that it is tough to enhance forecasting accuracy.
+Foreign exchange (forex) is the largest financial market in the world with a daily average of \\$5 trillion each day versus the largest stock market, New York Stock Exchange, which averages to \\$75 billion only. Forex is a decentralized market, meaning there is no single physical location where investors go to buy or sell currencies. Individuals or retailers can trade forex anywhere and anytime through their laptops or phones. Forex provides favorable leverage that a small amount of money can be used on large trades. This market is the most volatile yet has the highest return possible as well. However, since we don't live in a perfect world, it has the highest risk of losing money as well. One of the most explored foreign exchange problems is the prediction of forex prices (determining whether it will go up or down) of different currency pairs. This is a classification problem with binary values as outputs. Another obvious approach would be to treat it as a time series data. However, this requires working under the assumption that the data is linear and stationary - which is not true for forex prices. Financial time series are inherently noisy and unstable that it is tough to enhance forecasting accuracy.
 
 For this study, a classifier which predicts direction of trades is employed. Our classifier will recommend a trade (class 1) if in the next four hours the forex price is predicted to reach at least 300 pips higher than the previous closing price. Otherwise, the classifier will not recommend a trade (class 0). A <i>pip</i> or "percentage in point" computes the gains or losses of every trade. It is the unit of change in a currency pair - the smallest price change that a given exchange rate can make. 
 
@@ -219,7 +219,7 @@ We cannot directly use the features for modelling since they will cause the mode
 - trigger*
 - highest attainable price in the next 4 hours
 
-  <font size="1">*confidential information from data source / broker</font>
+  <font size="2">*confidential information from data source / broker</font>
 
 
 ```python
@@ -1128,7 +1128,7 @@ for i, tr in enumerate(trade_results):
 - period is from Jan 18, 2018 to Jun 15, 2018 or equivalent to six (6) months
 - resulting profit is from USD100,000 to USD154,000 or an increase in capital by 54%
 
-The predictions made from our model resulted in a total profit of (\\$53,855) (54% in 6 months). This is equivalent to an 8% month-on-month growth. These returns are within the average monthly returns of a professional forex trader which ranges between 1- 10% per month. It could also be observed that a larger portion of the trades caused losses which could be attributed to incorrect predictions. However, using the stop loss of 100 pips, the losses were still covered by the correct predictions.
+The predictions made from our model resulted in a total profit of \\$53,855 (54% in 6 months). This is equivalent to an 8% month-on-month growth. These returns are within the average monthly returns of a professional forex trader which ranges between 1- 10% per month. It could also be observed that a larger portion of the trades caused losses which could be attributed to incorrect predictions. However, using the stop loss of 100 pips, the losses were still covered by the correct predictions.
 
 
 ## Conclusion and Future Work
