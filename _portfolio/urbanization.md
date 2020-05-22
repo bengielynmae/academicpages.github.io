@@ -1,6 +1,6 @@
 ---
-title: "Urbanization in Metro Manila: The Not-So Livable Metropolis"
-excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><img src='/images/dvs/urbanization-titlecard.png'>"
+title: "Urbanization in Metro Manila"
+excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><img src='/images/dvs/urbanization-titlecard.png' width='600' height='500>"
 collection: portfolio
 ---
 

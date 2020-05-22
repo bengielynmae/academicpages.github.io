@@ -1,11 +1,11 @@
 ---
-title: "Urbanization in Metro Manila: The Not-So Livable Metropolis"
-excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><img src='/images/dvs/urbanization-titlecard.png'>"
+title: "Predicting the XAU-USD Foreign Exchange Prices"
+excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><img src='/images/forex/forex-titlecard.png' width='600' height='500'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Data Visualization & Storytelling</b> class under Prof. Erika Legara in the M.Sc. Data Science program. We collected data on the Philippine's historical population and GDP to understand the effect of urbanization. For this project, we used Tableau for the visualizations. This was presented to class last April 2019. </p>
+<p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. We used actual hourly price data from a foreign forex broker to predict the gold price. Various machine learning models were explored and a trade simulation was ran using the last 6 months of the dataset. The simulation from our best model resulted to a 54% return on investments. This study was presented to the public last August 2019. </p>
 
 <h2>Report</h2>
 As the global landscape continues to evolve, one key theme in driving change is urbanization. Socioeconomic aspects, such as the presence of more jobs and better pay, draw majority of the world's population towards urban areas. 
@@ -1636,11 +1636,8 @@ Actual Simulation:
 - period is from Jan 18, 2018 to Jun 15, 2018 or equivalent to six (6) months
 - resulting profit is from USD100,000 to USD154,000 or an increase in capital by 54%
 
-
-```python
-
-```
-The full infographic can be accessed [here](/files/urbanization-deck.pdf).
+<h2>Research Paper Available</h2>
+The journal article can be accessed [here](/files/forex-paper.pdf).
 
 <h2>Acknowledgements</h2>
-<p>This project was completed together with my learning teammates Bea Palomar and Nigel Silva.</p>
+<p>This project was completed together with my learning teammates Lance Aven Sy and Janlo Cordero.</p>
