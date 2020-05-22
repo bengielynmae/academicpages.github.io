@@ -16,15 +16,15 @@ This web app can identify paintings as old as 1471 with styles ranging from **re
 <h2>Web App</h2>
 This is how the web app looks like: 
 
-<img src='/images/artist-classifier/artist-classifier-home-page.png' width='900' height='800'>
+<img src='/images/artist-classifier/artist-classifier-home-page.png' width='1000' height='900'>
 
 You can choose an image file of any painting from your desktop/device. 
 
-<img src='/images/artist-classifier/artist-classifier-upload.png' width='900' height='800'>
+<img src='/images/artist-classifier/artist-classifier-upload.png' width='1000' height='900'>
 
-And then it would tell you who the artist is including the accuracy of that classification. 
+Upon clicking the **Reveal Artist** button, it would tell you who the artist is. The deep learning model might take a few seconds to preidct but it will also show you the accuracy of the classification. 
 
-<img src='/images/artist-classifier/artist-classifier-prediction.png' width='900' height='800'>
+<img src='/images/artist-classifier/artist-classifier-prediction.png' width='1000' height='900'>
 
 
 <h2>Try it for yourself</h2>
