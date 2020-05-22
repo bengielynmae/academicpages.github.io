@@ -1,6 +1,6 @@
 ---
 title: "Predicting the XAU-USD Foreign Exchange Prices"
-excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><br><img src='/images/forex/forex-titlecard.png' width='800' height='600'>"
+excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><br><img src='/images/forex/forex-titlecard.png'>"
 collection: portfolio
 ---
 

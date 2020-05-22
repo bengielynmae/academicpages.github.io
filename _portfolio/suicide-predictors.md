@@ -1,6 +1,6 @@
 ---
 title: "Machine Learning Identifies Top Predictors of Suicide Attempts"
-excerpt: "Using demographic data from a survey in reddit, the top predictors of suicide attempts are identified. Machine learning tries to predict a result of complex social, psychological, and biological interactions.<br/><br><img src='/images/suicide-predictors/cover.png' width='800' height='600'>"
+excerpt: "Using demographic data from a survey in reddit, the top predictors of suicide attempts are identified. Machine learning tries to predict a result of complex social, psychological, and biological interactions.<br/><br><img src='/images/suicide-predictors/cover.png'>"
 collection: portfolio
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: "Whose Art Is It?"
-excerpt: "This is a deployment of the DeepArtist model to a simple web application using flask. The algorithm, which trained on `ResNet50`, identifies the artist when shown a painting.<br/><br><img src='/images/artist-classifier/titlecard.png' width='800' height='600'>"
+excerpt: "This is a deployment of the DeepArtist model to a simple web application using flask. The algorithm, which trained on `ResNet50`, identifies the artist when shown a painting.<br/><br><img src='/images/artist-classifier/titlecard.png'>"
 collection: portfolio
 ---
 
