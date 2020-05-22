@@ -7,7 +7,7 @@ collection: portfolio
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. This study confirms that machine learning can be used on mental health data (if made available). It is capable of identifying predictors of suicide attempts and other critical suicide risk such as self-harm. This was presented to class in August 2019.</p>
 
-<img src='/images/suicide-predictors/poster.png' width='800' height='1900'><br><br>
+<img src='/images/suicide-predictors/poster.png' width='700' height='1800'><br><br>
 
 
 # Identifying Suicide Attempt Predictors using Machine Learning
