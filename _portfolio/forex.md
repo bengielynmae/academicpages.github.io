@@ -1,6 +1,6 @@
 ---
 title: "Predicting the XAU-USD Foreign Exchange Prices"
-excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><img src='/images/forex/forex-titlecard.png' width='600' height='500'>"
+excerpt: "An implementation of machine learning models to predict trends in forex prices despite their volatility. This is especially useful in helping amateur traders acquire gain or profit.<br/><br><img src='/images/forex/forex-titlecard.png' width='600' height='500'>"
 collection: portfolio
 ---
 
@@ -8,33 +8,12 @@ collection: portfolio
 <p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. We used actual hourly price data from a foreign forex broker to predict the gold price. Various machine learning models were explored and a trade simulation was ran using the last 6 months of the dataset. The simulation from our best model resulted to a 54% return on investments. This study was presented to the public last August 2019. </p>
 
 <h2>Report</h2>
-As the global landscape continues to evolve, one key theme in driving change is urbanization. Socioeconomic aspects, such as the presence of more jobs and better pay, draw majority of the world's population towards urban areas. 
+Foreign exchange (forex) is the largest financial market in the world with a daily average of $5 trillion each day versus the largest stock market, New York Stock Exchange, which averages to $75 billion only. Forex is a decentralized market, meaning there is no single physical location where investors go to buy or sell currencies. Individuals or retailers can trade forex anywhere and anytime through their laptops or phones. Forex provides favorable leverage that a small amount of money can be used on large trades. This market is the most volatile yet has the highest return possible as well. However, since we don't live in a perfect world, it has the highest risk of losing money as well. One of the most explored foreign exchange problems is the prediction of forex prices (determining whether it will go up or down) of different currency pairs. This is a classification problem with binary values as outputs. Another obvious approach would be to treat it as a time series data. However, this requires working under the assumption that the data is linear and stationary - which is not true for forex prices. Financial time series are inherently noisy and unstable that it is tough to enhance forecasting accuracy.
 
-### Loading Preliminaries
+For this study, a classifier which predicts direction of trades is employed. Our classifier will recommend a trade (class 1) if in the next four hours the forex price is predicted to reach at least 300 pips higher than the previous closing price. Otherwise, the classifier will not recommend a trade (class 0). A <i>pip</i> or "percentage in point" computes the gains or losses of every trade. It is the unit of change in a currency pair - the smallest price change that a given exchange rate can make. 
 
-
-```python
-import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-import matplotlib as mpl
-import numpy as np
-
-import re
-import datetime
-
-from warnings import filterwarnings
-filterwarnings('ignore')
-```
-
-
-```python
-plt.style.use('https://gist.githubusercontent.com/lpsy/'
-              'e81ff2c0decddc9c6dfeb2fcffe37708/raw/lsy_personal.mplstyle')
-```
 
 ### Machine Learning Packages
-
 
 ```python
 import sklearn
@@ -48,21 +27,7 @@ from sklearn import metrics, model_selection
 from sklearn.model_selection import GridSearchCV, train_test_split
 ```
 
-### Load Data
-
-
-```python
-df = pd.read_excel('XAUUSD60 2015-2018 Submission.xlsx',
-                   index_col='datetime')
-```
-
-
-```python
-df.head()
-```
-
-
-
+### Sample Data
 
 <div>
 <style scoped>
@@ -192,73 +157,48 @@ df.head()
 </div>
 
 
+The dataset contains actual hourly prices from Sep 10, 2015 to June 15, 2018 for a total of 16,298 observations/rows. The raw features were the open, high, low, and close prices and the volume. 
 
-Dataset is an hourly time series from Sep 10, 2015 to June 15, 2018 for a total of 16,298 observations/rows.
+<b>datetime</b> - Year/Month/Day/Hour  
+<b>open</b> - opening price within the hour  
+<b>high</b> - highest price within the hour  
+<b>low</b> - lowest price for within hour  
+<b>close</b> - closing price within the hour  
+<b>volume</b> - number of trades within the hour 
 
-Columns:
 
-datetime - Year/Month/Day/Hour  
-open - opening price within the hour  
-high - highest price within the hour  
-low - lowest price for within hour  
-close - closing price within the hour  
-volume - number of trades within the hour  
-ceiling - highest price of the day before  
-floor - lowest price of the day before  
-ma_short - moving average for a certain number of days (Non-Disclosure Agreement)  
-ma_short2 - moving average for a certain number of days (Non-Disclosure Agreement)  
-ma_mid - moving average for a certain number of days (Non-Disclosure Agreement)  
-ma_long - moving average for a certain number of days (Non-Disclosure Agreement)  
-trigger - a certain technical indicator (Non-Disclosure Agreement)  
+Other indicators were also calculated from these raw features:
+
+<b>>ceiling</b> - highest price of the day before  
+<b>floor</b> - lowest price of the day before  
+<b>ma_short</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+<b>ma_short2</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+<b>ma_mid</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+<b>ma_long</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+<b>trigger</b> - a certain technical indicator (Non-Disclosure Agreement)  
 
 ### Exploratory Data Analysis
-
-
-```python
-fig, ax = plt.subplots()
-
-sns.lineplot(x=df.index, y='close', data=df, ax=ax)
-```
-
-
-
 
 ![png](/images/forex/forex-eda.png)
 
 
-The whole dataset is on an upward trend but mostly ranging with numerous dips
-
-
-```python
-fig, ax = plt.subplots(1,2, figsize=(16,9))
-
-#OHLC boxplot
-df[['open', 'high', 'low', 'close']].boxplot(ax=ax[0])
-
-#boxplot for volume
-df[['volume']].boxplot(ax=ax[1]);
-```
-
-
-
-
-![png](/images/forex/forex-boxplot.png)
+It can be observed that the whole dataset is on an upward trend but mostly ranging with numerous dips. Gold price was ranging since the reversal in 2011 up to 2018.
 
 
 ### Methodology
 
+The models considerd for the classification are the following: 
+
+a. Logistic Regression (L2 Regularization)
+b. Linear Support Vector Machine (L2 Regularization)
+c. Random Forest Classifier
+d. Gradient Boosting Classifier
+
+Before modeling, we calculate the proportional chance criteria (PCC) for the dataset. This is the proportional by chance accuracy rate which computes the highest possible random chance of classifying data without explicit mathematical model other that population counts. As a heuristic or rule of thumb, a classifier machine learning model is considered highly succcesful when the test accuracy exceeds 1.25*PCC. 
 
 ```python
 def pcc(y, factor=1.25):
         """
-        Calculates the proportional chance criteria for the dataset
-
-        proportional by chance accuracy rate computes the highest possible
-        random chance of classifying data without explicit mathematical
-        model other than population counts. As a heuristic or rule of
-        thumb, a classifier machine learning model is considered highly
-        succcesful when the test accuracy exceeds 1.25*Pcc
-
         PARAMETERS
         ----------
         factor: float
@@ -277,8 +217,9 @@ def pcc(y, factor=1.25):
         return pcc
 ```
 
-Set-up the features
+#### Setting up the features
 
+We cannot directly 
 - 21 hour lag
 - moving averages
 - NDA feature (trigger)

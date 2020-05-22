@@ -1,13 +1,13 @@
 ---
 title: "Urbanization in Metro Manila"
-excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><img src='/images/dvs/urbanization-titlecard.png' width='600' height='500>"
+excerpt: "A story on how urbanization affects the lives of people. This short project examines the challenges that demand significant changes to basic urban management and policies.<br/><br><img src='/images/dvs/urbanization-titlecard.png' width='800' height='600'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Data Visualization & Storytelling</b> class under Prof. Erika Legara in the M.Sc. Data Science program. We collected data on the Philippine's historical population and GDP to understand the effect of urbanization. For this project, we used Tableau for the visualizations. This was presented to class last April 2019. </p>
 
-<h2>Report</h2>
+<h2>Urbanization in Metro Manila: A Not-So Livable Metropolis</h2>
 As the global landscape continues to evolve, one key theme in driving change is urbanization. Socioeconomic aspects, such as the presence of more jobs and better pay, draw majority of the world's population towards urban areas. 
 
 Philippines is actually home to one of the densest cities in the world. The population density of Metro Manila is so high reaching up to 20,785 people per square kilometer and there is no sign of this trend slowing down. That is 60 times larger than the national level which is 337 people per sq km. The urban share (percentage of urban population) has continued to grow by 4.5% annually from the year 2000 to 2017 and it's projected that by 2050, it would be at 61.71%. This means that our urban population would make up more than half of the national population. This also implies an even stronger centralization effect in urban areas when not planned properly. 
