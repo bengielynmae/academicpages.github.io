@@ -7,13 +7,13 @@ collection: portfolio
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Machine Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. We used actual hourly price data from a foreign forex broker to predict the gold price. Various machine learning models were explored and a trade simulation was ran using the last 6 months of the dataset. The simulation from our best model resulted to a 54% return on investments. This study was presented to the public last August 2019. </p>
 
-<h2>Report</h2>
-Foreign exchange (forex) is the largest financial market in the world with a daily average of $5 trillion each day versus the largest stock market, New York Stock Exchange, which averages to $75 billion only. Forex is a decentralized market, meaning there is no single physical location where investors go to buy or sell currencies. Individuals or retailers can trade forex anywhere and anytime through their laptops or phones. Forex provides favorable leverage that a small amount of money can be used on large trades. This market is the most volatile yet has the highest return possible as well. However, since we don't live in a perfect world, it has the highest risk of losing money as well. One of the most explored foreign exchange problems is the prediction of forex prices (determining whether it will go up or down) of different currency pairs. This is a classification problem with binary values as outputs. Another obvious approach would be to treat it as a time series data. However, this requires working under the assumption that the data is linear and stationary - which is not true for forex prices. Financial time series are inherently noisy and unstable that it is tough to enhance forecasting accuracy.
+<h1>Report</h1>
+Foreign exchange (forex) is the largest financial market in the world with a daily average of 5 trillion USD each day versus the largest stock market, New York Stock Exchange, which averages to 75 billion USD only. Forex is a decentralized market, meaning there is no single physical location where investors go to buy or sell currencies. Individuals or retailers can trade forex anywhere and anytime through their laptops or phones. Forex provides favorable leverage that a small amount of money can be used on large trades. This market is the most volatile yet has the highest return possible as well. However, since we don't live in a perfect world, it has the highest risk of losing money as well. One of the most explored foreign exchange problems is the prediction of forex prices (determining whether it will go up or down) of different currency pairs. This is a classification problem with binary values as outputs. Another obvious approach would be to treat it as a time series data. However, this requires working under the assumption that the data is linear and stationary - which is not true for forex prices. Financial time series are inherently noisy and unstable that it is tough to enhance forecasting accuracy.
 
 For this study, a classifier which predicts direction of trades is employed. Our classifier will recommend a trade (class 1) if in the next four hours the forex price is predicted to reach at least 300 pips higher than the previous closing price. Otherwise, the classifier will not recommend a trade (class 0). A <i>pip</i> or "percentage in point" computes the gains or losses of every trade. It is the unit of change in a currency pair - the smallest price change that a given exchange rate can make. 
 
 
-### Machine Learning Packages
+## Machine Learning Packages
 
 ```python
 import sklearn
@@ -27,7 +27,7 @@ from sklearn import metrics, model_selection
 from sklearn.model_selection import GridSearchCV, train_test_split
 ```
 
-### Sample Data
+## Sample Data
 
 <div>
 <style scoped>
@@ -156,28 +156,28 @@ from sklearn.model_selection import GridSearchCV, train_test_split
 </table>
 </div>
 
-
+<br>
 The dataset contains actual hourly prices from Sep 10, 2015 to June 15, 2018 for a total of 16,298 observations/rows. The raw features were the open, high, low, and close prices and the volume. 
 
-<b>datetime</b> - Year/Month/Day/Hour  
-<b>open</b> - opening price within the hour  
-<b>high</b> - highest price within the hour  
-<b>low</b> - lowest price for within hour  
-<b>close</b> - closing price within the hour  
-<b>volume</b> - number of trades within the hour 
+  <b>datetime</b> - Year/Month/Day/Hour  
+  <b>open</b> - opening price within the hour  
+  <b>high</b> - highest price within the hour  
+  <b>low</b> - lowest price for within hour  
+  <b>close</b> - closing price within the hour  
+  <b>volume</b> - number of trades within the hour 
 
 
 Other indicators were also calculated from these raw features:
 
-<b>>ceiling</b> - highest price of the day before  
-<b>floor</b> - lowest price of the day before  
-<b>ma_short</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
-<b>ma_short2</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
-<b>ma_mid</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
-<b>ma_long</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
-<b>trigger</b> - a certain technical indicator (Non-Disclosure Agreement)  
+  <b>ceiling</b> - highest price of the day before  
+  <b>floor</b> - lowest price of the day before  
+  <b>ma_short</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+  <b>ma_short2</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+  <b>ma_mid</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+  <b>ma_long</b> - moving average for a certain number of days (Non-Disclosure Agreement)  
+  <b>trigger</b> - a certain technical indicator (Non-Disclosure Agreement)  
 
-### Exploratory Data Analysis
+## Exploratory Data Analysis
 
 ![png](/images/forex/forex-eda.png)
 
@@ -185,14 +185,7 @@ Other indicators were also calculated from these raw features:
 It can be observed that the whole dataset is on an upward trend but mostly ranging with numerous dips. Gold price was ranging since the reversal in 2011 up to 2018.
 
 
-### Methodology
-
-The models considerd for the classification are the following: 
-
-a. Logistic Regression (L2 Regularization)
-b. Linear Support Vector Machine (L2 Regularization)
-c. Random Forest Classifier
-d. Gradient Boosting Classifier
+## Methodology
 
 Before modeling, we calculate the proportional chance criteria (PCC) for the dataset. This is the proportional by chance accuracy rate which computes the highest possible random chance of classifying data without explicit mathematical model other that population counts. As a heuristic or rule of thumb, a classifier machine learning model is considered highly succcesful when the test accuracy exceeds 1.25*PCC. 
 
@@ -217,13 +210,16 @@ def pcc(y, factor=1.25):
         return pcc
 ```
 
-#### Setting up the features
+### Setting up the features
 
-We cannot directly 
-- 21 hour lag
+We cannot directly use the features for modelling since they will cause the model to predict the forex trend using features that are in the same time period. Instead, we generated features for modelling from the lagges values of the orginal features. 
+
+- 21-hour lag window
 - moving averages
-- NDA feature (trigger)
+- trigger*
 - highest attainable price in the next 4 hours
+
+  <font size="9">*confidential information from data source / broker</font>
 
 
 ```python
@@ -285,7 +281,7 @@ def generate_features(df, window_range=5):
 data = generate_features(df, window_range=21)
 ```
 
-Set the targets.
+### Setting the targets
 
 Target is an increase of 300 pips (\\$3) in the next 4 hours. An additional 30 pips (\\$0.3) is added to account for the difference in buying and selling prices. The difference is the spread for the forex brokerage.
 
@@ -296,21 +292,19 @@ def reco(x):
         return 1
     else:
         return 0
-```
 
 
-```python
 data['target'] = data.apply(reco, axis=1)
 ```
-
 
 ```python
 targets = data['target']
 X = data.drop(['target', 'high_close_diff'], axis=1)
 ```
 
-Split the data (Train-Test)
+### Splitting the data into train-test
 
+Even if the model built was a classifier, the data was split based on time periods. This ensures that the model is trained without seeing data from the future. 
 
 ```python
 startDATE = datetime.datetime(2015, 9, 11, 1)
@@ -326,23 +320,18 @@ X_train.shape, X_test.shape, y_train.shape, y_test.shape
 ```
 
 
-
-
     ((13795, 113), (2420, 113), (13795,), (2420,))
 
 
 
-PCC without SMOTE
+We calculated the PCC of the dataset without sampling. It can be observed that the dataset is unbalanced with class 1 as minority. To address this, we use a sampling method called SMOTE (Synthetic Minority Oversampling Technique) to oversample the data for the purpose of balancing the classes. 
 
 
 ```python
-pcc(y_train, factor=1.25)
+pcc(y_train)
 ```
 
-
-
-
-    67.79956558528475
+    54.0
 
 
 
@@ -351,32 +340,23 @@ pcc(y_train, factor=1.25)
 np.unique(y_train, return_counts=True)
 ```
 
-
-
-
     (array([0, 1]), array([8906, 4889]))
 
 
-
-Importing SMOTE (Synthetic Minority Oversampling Technique), by the name itself is to oversample for the purpose of balancing the data.
-
+**Performing SMOTE**
 
 ```python
 from imblearn import over_sampling
 ```
-
 
 ```python
 sampler = over_sampling.SMOTE()
 X_sampled, y_sampled = sampler.fit_resample(X_train, y_train)
 ```
 
-
 ```python
 np.unique(y_sampled, return_counts=True)
 ```
-
-
 
 
     (array([0, 1]), array([8906, 8906]))
@@ -384,6 +364,16 @@ np.unique(y_sampled, return_counts=True)
 
 
 ## Various Classifier Models
+
+The models considerd for the classification are the following: 
+
+a. Logistic Regression (L2 Regularization)<br>
+b. Linear Support Vector Machine (L2 Regularization)<br>
+c. Random Forest Classifier<br>
+d. Gradient Boosting Classifier<br>
+
+
+The parameters for each classifier are tuned using sklearn's grid search cross validation function with a *precision_macro* scoring. The scoring maximizes the tru positives and true negatives predicted by the model, making it more reliable. 
 
 ### Logistic Regression
 
@@ -486,10 +476,6 @@ print(metrics.classification_report(y_test, predictions_lsvm))
     
 
 
-    /anaconda3/lib/python3.7/site-packages/sklearn/svm/base.py:929: ConvergenceWarning: Liblinear failed to converge, increase the number of iterations.
-      "the number of iterations.", ConvergenceWarning)
-
-
 ### Random Forest
 
 
@@ -581,12 +567,15 @@ print(metrics.classification_report(y_test, predictions_gb))
     weighted avg       0.60      0.63      0.61      2420
     
 
+After identifying the best model, a trade simulation is run using the testing set. The estimated profit is calculated using the predictions and stoploss assumptions. 
 
 ## Results
 
+The accuracy attained from all the models are below the heuristic target which is the significant PCC (1.25 x 54%) which is 67.8%. However, these results still beat the PCC and are still better than guessing trades at random. The effectiveness of this model could be further analyzed through the trade simulation. 
+
 ### Simulate trades using LSVM
 
-Even if they both have a 65% accuracy, we choose linear svm over random forest as it has a better precision and recall for class 1.
+Even if they both have a 65% accuracy, we choose **Linear SVM** over Random Forest as it has a better precision and recall for class 1.
 
 
 ```python
@@ -595,23 +584,6 @@ pred_df['label'] = y_test
 pred_df['pred'] = lsvm_best.predict(X_test)
 pred_df.head()
 ```
-
-    /anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:2: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame.
-    Try using .loc[row_indexer,col_indexer] = value instead
-    
-    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-      
-    /anaconda3/lib/python3.7/site-packages/ipykernel_launcher.py:3: SettingWithCopyWarning: 
-    A value is trying to be set on a copy of a slice from a DataFrame.
-    Try using .loc[row_indexer,col_indexer] = value instead
-    
-    See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html#indexing-view-versus-copy
-      This is separate from the ipykernel package so we can avoid doing imports until
-
-
-
-
 
 <div>
 <style scoped>
@@ -806,10 +778,10 @@ pred_df.head()
 
 
 
-Simulation:
+### Simulation:
 
-equity - this is the starting capital in thousands thus USD100,000  
-sl_threshold - is the stoploss which is an order to reduce the losses
+**equity** - this is the starting capital in thousands thus USD100,000  
+**sl_threshold** - is the stoploss which is an order to reduce the losses
 
 
 ```python
@@ -901,7 +873,7 @@ xcheck
 ```
 
 
-
+### Sample Output
 
 <div>
 <style scoped>
@@ -1121,431 +1093,10 @@ xcheck
       <td>-1.361052</td>
       <td>103.335266</td>
     </tr>
-    <tr>
-      <th>2018-01-26 14:00:00</th>
-      <td>1350.46</td>
-      <td>1353.46</td>
-      <td>1349.46</td>
-      <td>1353.46</td>
-      <td>0.010334</td>
-      <td>2.790052</td>
-      <td>106.125319</td>
-    </tr>
-    <tr>
-      <th>2018-01-26 16:00:00</th>
-      <td>1351.57</td>
-      <td>1354.57</td>
-      <td>1350.57</td>
-      <td>1350.57</td>
-      <td>0.010613</td>
-      <td>-1.379629</td>
-      <td>104.745689</td>
-    </tr>
-    <tr>
-      <th>2018-01-26 18:00:00</th>
-      <td>1352.03</td>
-      <td>1355.03</td>
-      <td>1351.03</td>
-      <td>1351.03</td>
-      <td>0.010475</td>
-      <td>-1.361694</td>
-      <td>103.383996</td>
-    </tr>
-    <tr>
-      <th>2018-01-29 03:00:00</th>
-      <td>1350.78</td>
-      <td>1353.78</td>
-      <td>1349.78</td>
-      <td>1349.78</td>
-      <td>0.010338</td>
-      <td>-1.343992</td>
-      <td>102.040004</td>
-    </tr>
-    <tr>
-      <th>2018-01-29 11:00:00</th>
-      <td>1346.21</td>
-      <td>1349.21</td>
-      <td>1345.21</td>
-      <td>1345.21</td>
-      <td>0.010204</td>
-      <td>-1.326520</td>
-      <td>100.713484</td>
-    </tr>
-    <tr>
-      <th>2018-01-29 15:00:00</th>
-      <td>1343.36</td>
-      <td>1346.36</td>
-      <td>1342.36</td>
-      <td>1342.36</td>
-      <td>0.010071</td>
-      <td>-1.309275</td>
-      <td>99.404208</td>
-    </tr>
-    <tr>
-      <th>2018-01-29 19:00:00</th>
-      <td>1340.03</td>
-      <td>1343.03</td>
-      <td>1339.03</td>
-      <td>1343.03</td>
-      <td>0.009940</td>
-      <td>2.683914</td>
-      <td>102.088122</td>
-    </tr>
-    <tr>
-      <th>2018-01-30 12:00:00</th>
-      <td>1343.80</td>
-      <td>1346.80</td>
-      <td>1342.80</td>
-      <td>1342.80</td>
-      <td>0.010209</td>
-      <td>-1.327146</td>
-      <td>100.760976</td>
-    </tr>
-    <tr>
-      <th>2018-01-30 16:00:00</th>
-      <td>1345.90</td>
-      <td>1348.90</td>
-      <td>1344.90</td>
-      <td>1344.90</td>
-      <td>0.010076</td>
-      <td>-1.309893</td>
-      <td>99.451084</td>
-    </tr>
-    <tr>
-      <th>2018-01-31 04:00:00</th>
-      <td>1338.72</td>
-      <td>1341.72</td>
-      <td>1337.72</td>
-      <td>1341.72</td>
-      <td>0.009945</td>
-      <td>2.685179</td>
-      <td>102.136263</td>
-    </tr>
-    <tr>
-      <th>2018-01-31 12:00:00</th>
-      <td>1343.21</td>
-      <td>1346.21</td>
-      <td>1342.21</td>
-      <td>1342.21</td>
-      <td>0.010214</td>
-      <td>-1.327771</td>
-      <td>100.808491</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>2018-06-01 16:00:00</th>
-      <td>1292.40</td>
-      <td>1295.40</td>
-      <td>1291.40</td>
-      <td>1295.40</td>
-      <td>0.014717</td>
-      <td>3.973537</td>
-      <td>151.141558</td>
-    </tr>
-    <tr>
-      <th>2018-06-01 18:00:00</th>
-      <td>1295.02</td>
-      <td>1298.02</td>
-      <td>1294.02</td>
-      <td>1294.02</td>
-      <td>0.015114</td>
-      <td>-1.964840</td>
-      <td>149.176718</td>
-    </tr>
-    <tr>
-      <th>2018-06-04 11:00:00</th>
-      <td>1292.81</td>
-      <td>1295.81</td>
-      <td>1291.81</td>
-      <td>1295.81</td>
-      <td>0.014918</td>
-      <td>4.027771</td>
-      <td>153.204489</td>
-    </tr>
-    <tr>
-      <th>2018-06-04 15:00:00</th>
-      <td>1296.57</td>
-      <td>1299.57</td>
-      <td>1295.57</td>
-      <td>1295.57</td>
-      <td>0.015320</td>
-      <td>-1.991658</td>
-      <td>151.212831</td>
-    </tr>
-    <tr>
-      <th>2018-06-04 17:00:00</th>
-      <td>1295.28</td>
-      <td>1298.28</td>
-      <td>1294.28</td>
-      <td>1294.28</td>
-      <td>0.015121</td>
-      <td>-1.965767</td>
-      <td>149.247064</td>
-    </tr>
-    <tr>
-      <th>2018-06-05 11:00:00</th>
-      <td>1291.77</td>
-      <td>1294.77</td>
-      <td>1290.77</td>
-      <td>1290.77</td>
-      <td>0.014925</td>
-      <td>-1.940212</td>
-      <td>147.306852</td>
-    </tr>
-    <tr>
-      <th>2018-06-05 14:00:00</th>
-      <td>1290.65</td>
-      <td>1293.65</td>
-      <td>1289.65</td>
-      <td>1293.65</td>
-      <td>0.014731</td>
-      <td>3.977285</td>
-      <td>151.284137</td>
-    </tr>
-    <tr>
-      <th>2018-06-05 17:00:00</th>
-      <td>1292.42</td>
-      <td>1295.42</td>
-      <td>1291.42</td>
-      <td>1295.42</td>
-      <td>0.015128</td>
-      <td>4.084672</td>
-      <td>155.368809</td>
-    </tr>
-    <tr>
-      <th>2018-06-05 20:00:00</th>
-      <td>1298.41</td>
-      <td>1301.41</td>
-      <td>1297.41</td>
-      <td>1297.41</td>
-      <td>0.015537</td>
-      <td>-2.019795</td>
-      <td>153.349014</td>
-    </tr>
-    <tr>
-      <th>2018-06-06 11:00:00</th>
-      <td>1298.18</td>
-      <td>1301.18</td>
-      <td>1297.18</td>
-      <td>1297.18</td>
-      <td>0.015335</td>
-      <td>-1.993537</td>
-      <td>151.355477</td>
-    </tr>
-    <tr>
-      <th>2018-06-06 13:00:00</th>
-      <td>1295.00</td>
-      <td>1298.00</td>
-      <td>1294.00</td>
-      <td>1294.00</td>
-      <td>0.015136</td>
-      <td>-1.967621</td>
-      <td>149.387856</td>
-    </tr>
-    <tr>
-      <th>2018-06-06 16:00:00</th>
-      <td>1298.13</td>
-      <td>1301.13</td>
-      <td>1297.13</td>
-      <td>1301.13</td>
-      <td>0.014939</td>
-      <td>4.033472</td>
-      <td>153.421328</td>
-    </tr>
-    <tr>
-      <th>2018-06-07 11:00:00</th>
-      <td>1298.53</td>
-      <td>1301.53</td>
-      <td>1297.53</td>
-      <td>1301.53</td>
-      <td>0.015342</td>
-      <td>4.142376</td>
-      <td>157.563704</td>
-    </tr>
-    <tr>
-      <th>2018-06-07 16:00:00</th>
-      <td>1301.33</td>
-      <td>1304.33</td>
-      <td>1300.33</td>
-      <td>1300.33</td>
-      <td>0.015756</td>
-      <td>-2.048328</td>
-      <td>155.515376</td>
-    </tr>
-    <tr>
-      <th>2018-06-08 11:00:00</th>
-      <td>1298.49</td>
-      <td>1301.49</td>
-      <td>1297.49</td>
-      <td>1297.49</td>
-      <td>0.015552</td>
-      <td>-2.021700</td>
-      <td>153.493676</td>
-    </tr>
-    <tr>
-      <th>2018-06-08 16:00:00</th>
-      <td>1298.21</td>
-      <td>1301.21</td>
-      <td>1297.21</td>
-      <td>1297.21</td>
-      <td>0.015349</td>
-      <td>-1.995418</td>
-      <td>151.498258</td>
-    </tr>
-    <tr>
-      <th>2018-06-11 11:00:00</th>
-      <td>1296.69</td>
-      <td>1299.69</td>
-      <td>1295.69</td>
-      <td>1295.69</td>
-      <td>0.015150</td>
-      <td>-1.969477</td>
-      <td>149.528781</td>
-    </tr>
-    <tr>
-      <th>2018-06-11 13:00:00</th>
-      <td>1295.50</td>
-      <td>1298.50</td>
-      <td>1294.50</td>
-      <td>1298.50</td>
-      <td>0.014953</td>
-      <td>4.037277</td>
-      <td>153.566058</td>
-    </tr>
-    <tr>
-      <th>2018-06-11 16:00:00</th>
-      <td>1298.89</td>
-      <td>1301.89</td>
-      <td>1297.89</td>
-      <td>1301.89</td>
-      <td>0.015357</td>
-      <td>4.146284</td>
-      <td>157.712341</td>
-    </tr>
-    <tr>
-      <th>2018-06-12 12:00:00</th>
-      <td>1297.71</td>
-      <td>1300.71</td>
-      <td>1296.71</td>
-      <td>1296.71</td>
-      <td>0.015771</td>
-      <td>-2.050260</td>
-      <td>155.662081</td>
-    </tr>
-    <tr>
-      <th>2018-06-12 16:00:00</th>
-      <td>1295.62</td>
-      <td>1298.62</td>
-      <td>1294.62</td>
-      <td>1298.62</td>
-      <td>0.015566</td>
-      <td>4.202876</td>
-      <td>159.864957</td>
-    </tr>
-    <tr>
-      <th>2018-06-13 13:00:00</th>
-      <td>1294.56</td>
-      <td>1297.56</td>
-      <td>1293.56</td>
-      <td>1297.56</td>
-      <td>0.015986</td>
-      <td>4.316354</td>
-      <td>164.181311</td>
-    </tr>
-    <tr>
-      <th>2018-06-13 22:00:00</th>
-      <td>1299.69</td>
-      <td>1302.69</td>
-      <td>1298.69</td>
-      <td>1298.69</td>
-      <td>0.016418</td>
-      <td>-2.134357</td>
-      <td>162.046954</td>
-    </tr>
-    <tr>
-      <th>2018-06-14 08:00:00</th>
-      <td>1299.35</td>
-      <td>1302.35</td>
-      <td>1298.35</td>
-      <td>1302.35</td>
-      <td>0.016205</td>
-      <td>4.375268</td>
-      <td>166.422222</td>
-    </tr>
-    <tr>
-      <th>2018-06-14 16:00:00</th>
-      <td>1307.28</td>
-      <td>1310.28</td>
-      <td>1306.28</td>
-      <td>1306.28</td>
-      <td>0.016642</td>
-      <td>-2.163489</td>
-      <td>164.258733</td>
-    </tr>
-    <tr>
-      <th>2018-06-14 19:00:00</th>
-      <td>1304.39</td>
-      <td>1307.39</td>
-      <td>1303.39</td>
-      <td>1303.39</td>
-      <td>0.016426</td>
-      <td>-2.135364</td>
-      <td>162.123369</td>
-    </tr>
-    <tr>
-      <th>2018-06-15 10:00:00</th>
-      <td>1299.55</td>
-      <td>1302.55</td>
-      <td>1298.55</td>
-      <td>1298.55</td>
-      <td>0.016212</td>
-      <td>-2.107604</td>
-      <td>160.015765</td>
-    </tr>
-    <tr>
-      <th>2018-06-15 14:00:00</th>
-      <td>1299.58</td>
-      <td>1302.58</td>
-      <td>1298.58</td>
-      <td>1298.58</td>
-      <td>0.016002</td>
-      <td>-2.080205</td>
-      <td>157.935560</td>
-    </tr>
-    <tr>
-      <th>2018-06-15 16:00:00</th>
-      <td>1292.32</td>
-      <td>1295.32</td>
-      <td>1291.32</td>
-      <td>1291.32</td>
-      <td>0.015794</td>
-      <td>-2.053162</td>
-      <td>155.882398</td>
-    </tr>
-    <tr>
-      <th>2018-06-15 18:00:00</th>
-      <td>1280.50</td>
-      <td>1283.50</td>
-      <td>1279.50</td>
-      <td>1279.50</td>
-      <td>0.015588</td>
-      <td>-2.026471</td>
-      <td>153.855927</td>
-    </tr>
   </tbody>
 </table>
 <p>375 rows × 7 columns</p>
 </div>
-
 
 
 
@@ -1571,11 +1122,22 @@ for i, tr in enumerate(trade_results):
 ![png](/images/forex/forex-prediction.png)
 
 
-Actual Simulation:
+### Actual Simulation:
 
 - target of 300 pips and a 100 stoploss
 - period is from Jan 18, 2018 to Jun 15, 2018 or equivalent to six (6) months
 - resulting profit is from USD100,000 to USD154,000 or an increase in capital by 54%
+
+The predictions made from our model resulted in a total profit of (\\$53,855) (54% in 6 months). This is equivalent to an 8% month-on-month growth. These returns are within the average monthly returns of a professional forex trader which ranges between 1- 10% per month. It could also be observed that a larger portion of the trades caused losses which could be attributed to incorrect predictions. However, using the stop loss of 100 pips, the losses were still covered by the correct predictions.
+
+
+## Conclusions and Recommendations
+
+As some forex trading softwares allows scripting to automate their trades, it is entirely possible to retrain an updated model using latest 2019 data and other deep learning algorithms such as Long Short Term Memory to improve accuracy. These models can then be implemented for automated trading.
+
+Forex trading also allows short selling which helps traders to earn from down trends. Therefore, the model could be further improved by converting it into a multinomial classifier. The model could then recommend no trade, trade (uptrend), and trade (downtrend). This would give more trading opportunities for the trader.
+Forex trading can be a better investment over stocks and fixed income for retailers. With the right strategy and discipline, an individual can gain profit of 1% with one trade per week and compounding it for 52 weeks in a year, it is equivalent to 66%.
+
 
 <h2>Research Paper Available</h2>
 The journal article can be accessed [here](/files/forex-paper.pdf).
