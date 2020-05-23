@@ -20,7 +20,6 @@ This web app can identify paintings as old as 1471 with styles ranging from **re
 You can choose an image file of any painting from your desktop/device. 
 
 Upon clicking the **Reveal Artist** button, it would tell you who the artist is. The deep learning model might take a few seconds to preidct but it will also show you the accuracy of the classification. 
-
 <video width='1024' height='768' controls>
   <source src="/files/artist-classifier.mov">
 </video>
