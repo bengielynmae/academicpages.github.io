@@ -9,8 +9,8 @@ collection: portfolio
 
 # In The News: Predicting Winning Political Candidates From News Tone
 
-## Executive Summary
-This study used the Global Dataset of Events, Language, and Tone (GDELT) to forecast the result of the US 2016 presidential election. The dataset is composed of news around the world collected every 15 minutes. It also includes the identities of those involved and the tone of language used. A four-way race was considered in this work and 102.9 GB of data from GDELT was wrangled to perform the analysis. This was accessed on the Amazon Web Service (AWS). A time series of article mentions for each of the candidate was generated. The daily poll results during the campaign period was used as a target variable for training the model. In this work, it was demonstrated that data from news coverage can accurately predict which candidate will win. 
+## Summary
+This study used the Global Dataset of Events, Language, and Tone (GDELT) to forecast the result of the US 2016 presidential election. The dataset is composed of news around the world collected every 15 minutes. It also includes the identities of those involved and the tone of language used. A four-way race was considered in this work and 102.9 GB of data from GDELT was wrangled to perform the analysis. This was accessed on the Amazon Web Service (AWS). A time series of article mentions for each of the candidates were generated. The daily poll results during the campaign period was used as a target variable for training the model. In this work, it was demonstrated that data from news coverage can accurately predict which candidate will win. 
 
 
 ## Introduction
@@ -40,7 +40,7 @@ For this study, the data was accessed through the Registry of Open Data on Amazo
 
 The Global Database of Events, Language, and Tone ([GDELT](https://www.gdeltproject.org)) is an initiative whose goal is to *“construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet”*. Every 15 minutes, data is collected from news sources across the world along with the identities of those involved, their country, and the tone of language used in that piece of news with the corresponding time stamp per entry. **The specific data accessed for this study was over 102.9 GB of data containing over 383 million entries.**
 
-Direct interface with the GDELT data was done in a separate notebook that saved the relevant data for each presidential candidate as a time series. You can check it out [here](files/news-tone-wrangler.html).
+Direct interface with the GDELT data was done in a separate notebook that saved the relevant data for each presidential candidate as a time series. You can check it out [here](/files/news-tone-wrangler.html).
 
 Below are some summary statistics for the time series of the articles obtained per candidate.
 
