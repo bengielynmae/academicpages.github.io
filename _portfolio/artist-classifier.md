@@ -42,11 +42,10 @@ Download all the files and folders from my repository and save them together in 
 
 Then go to 127.0.0.1:5000 on your browser. 
 
-A video on how it works can be viewed here 
-![](/files/artist-classifier.mov)
+### Here's a screen record video on how it works
 
-<video width="320" height="240" controls>
-  <source src="/files/artist-classifier.mov" type="video/mov">
+<video>
+  <source src="/files/artist-classifier.mov">
 </video>
 
 
