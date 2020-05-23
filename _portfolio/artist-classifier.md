@@ -44,7 +44,7 @@ Then go to 127.0.0.1:5000 on your browser.
 
 ### Here's a screen record video on how it works
 
-<video>
+<video controls>
   <source src="/files/artist-classifier.mov">
 </video>
 
