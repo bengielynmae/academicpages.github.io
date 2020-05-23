@@ -7,7 +7,7 @@ collection: portfolio
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Deep Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. In this study, the resulting models performed well in identifying plant diseases from images for both high and low resolution samples. This was presented to the public in December 2019.</p>
 
-
+<br><br>
 # Take it or Leaf it: Plant Disease Classification through Leaf Analysis Using CNNs
 
 
@@ -17,7 +17,7 @@ Plant disease presents a threat to national food security and the livelihood of 
 
 To provide a tool that can deliver these results, this study developed a deep learning model that can identify diseases present in three species of plants. Through the combnation of multiple CNNs, two models were developed for relatively high resolution coloredimages (256x256 pixles) and lower resolution versions of these images (64x64 pixels). The first model had an f1 score of 97.7% while the second second model using lower resolution images had an f1 score of 97%. Both models had difficulty differentiating between healthy plant leaf specimens making it less useful for identifying plant types and is more accurate in identifying diseases that afflict each. 
 
-### Introduction
+## Introduction
 
 In order to meet the demand of more than 7 billion people in the world, human society has been able to harness the power of modern technologies to produce enough food. However, one of the major factors shaking the food demand, i.e food security, remains threatened by a number of factors, which includes climate change and plant diseases among others.
 
@@ -27,7 +27,7 @@ In order to develop accurate image classifiers for the purposes of plant disease
 
 **The goal of this study is to develop a model that can aid the agricultural through the use of deep learning to provide a fast, accurate, an low-cost process that can identify diseases in plants.**
 
-### Data Pre-processing
+## Data Pre-processing
 
 The model is to be constructed mainly using the [tensorflow](https://www.tensorflow.org/guide/keras/overview) implementation of the *keras* API. Some helper functions are also loaded from [opencv (cv2)](https://opencv.org/) and [scikit-learn](https://scikit-learn.org/stable)
 
@@ -207,7 +207,7 @@ np.sum([(x/8519)**2 for x in image_labels.sum(axis = 0)])
 np_image_list = np.array(image_list) / 255.0
 ```
 
-### Deep Learning Models
+## Deep Learning Models
 
 Two separate models are generated for the 256x256 images and the 64x64 images. The architecture described is the same for both models with the only difference being in the final max pooling layer which was changed in the interest of simplifying computation time. The CNNs all had ReLU activation functions while the final dense output used a Softmax function since there are many classes which can be predicted. 
 
@@ -665,9 +665,9 @@ The misclassifications from the 64x64 model showed a similar trend as the 256x25
 
 The model failed to differentiate well between early blight and late blight for potatoes. The appearance of the two diseases are very similar with the difference mainly being the shape of their affected area in a leaf. Due to the downsampling of the image, edges became less defined which could have resulted in poorer differentiation between the two closely related classes.
 
-### Conclusion
+## Conclusion
 
 Deep learning models have shown great predictive power when classifying plants and their associated diseases. In this study, the models developed performed well in identifying plant-disease pairs with accuracies around 97%. As was demonstrated, using high-resolution (256x256) images provided marginally superior performance to low-resolution (64x64) images. When it comes to weighing the benefits and costs of equipment to take high resolution images opposed to lower resolution ones, this minor difference in performance may not be as important. Given the nature of misclassifications, more work is required to fine-tune improve the accuracy of the models.
 
-### Acknowledgements
+## Acknowledgements
 This project was completed together with my learning teammates and co-authors Gilbert Chua, Roy Roberto, and Jishu Basak. We would like to thank Dr. Christopher Monterola and Dr. Erika Legara in guiding us through this learning experience.
