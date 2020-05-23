@@ -5,7 +5,7 @@ collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Deep Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. In this study, the resulting models performed well in identifying plant-disease pairs with accuracies around 97%. Using high-resolution (256x256) images provided only a marginal difference in performance comparing to using  low-resolution (64x64) images. This was presented to the public in December 2019.</p>
+<p>This was a final project output for our <b>Deep Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. In this study, the resulting models performed well in identifying plant diseases from images for both high and low resolution samples. This was presented to the public in December 2019.</p>
 
 
 # Take it or Leaf it: Plant Disease Classification through Leaf Analysis Using CNNs
@@ -29,7 +29,7 @@ In order to develop accurate image classifiers for the purposes of plant disease
 
 ### Data Pre-processing
 
-The model is to be constructed mainly using the [tensorflow](https://www.tensorflow.org/guide/keras/overview) implementation of the *keras* API. Some helper functions are also loaded from [opencv (cv2)](https://opencv.org/) and [scikit-learn](https://scikit-learn.org/stable]
+The model is to be constructed mainly using the [tensorflow](https://www.tensorflow.org/guide/keras/overview) implementation of the *keras* API. Some helper functions are also loaded from [opencv (cv2)](https://opencv.org/) and [scikit-learn](https://scikit-learn.org/stable)
 
 
 ```python
@@ -54,11 +54,11 @@ import matplotlib.pyplot as plt
 
 We set the intial hyperparameters of model for use later on.
 
-**epochs** : number of epochs for training
-**init_lr**: the initial learning rate of the model
-**bs**     : the batch size per epoch
-**width**  : the number of pixels that make up the width of the image
-**height** : the number of pixels that make up the height of the image
+**epochs** : number of epochs for training<br>
+**init_lr**: the initial learning rate of the model<br>
+**bs**     : the batch size per epoch<br>
+**width**  : the number of pixels that make up the width of the image<br>
+**height** : the number of pixels that make up the height of the image<br>
 **depth**  : the number of dimensions for each channel of the image (Red, Green, and Blue for color)
 
 The `epochs`, `init_lr`, and `bs` were chosen after tuning the model already.
@@ -139,7 +139,7 @@ except Exception as e:
 The number of images sampled in this study totals to 4,522. 
 
 
-#### Transforming the image labels using scikit-learn's `LabelBinarizer` function.
+### Transforming the image labels using scikit-learn's `LabelBinarizer` function.
 
 ```python
 label_binarizer = LabelBinarizer()
@@ -149,8 +149,7 @@ n_classes = len(label_binarizer.classes_)
 
 ```python
 pcc = dict(zip(label_binarizer.classes_, image_labels.sum(axis = 0)))
-
-
+```
 Showing the number of images for each of the 10 classes in the sample dataset.
 
 
@@ -175,17 +174,12 @@ def convert_image_to_array_spec(image_dir, size = 256):
 ```
 
 
-```python
-plt.imshow(convert_image_to_array_spec('input/plantvillage/plants/Potato__Early_blight/001187a0-57ab-4329-baff-e7246a9edeb0___RS_Early.B 8178.JPG')/255)
-```
-
+### Sample of a high-resolution image
 
 ![png](/images/plant-disease/potato-255.png)
 
 
-```python
-plt.imshow(convert_image_to_array_spec('input/plantvillage/plants/Potato__Early_blight/001187a0-57ab-4329-baff-e7246a9edeb0___RS_Early.B 8178.JPG', size = 64)/255)
-```
+### Sample of a low-resolution image
 
 ![png](/images/plant-disease/potato-64.png)
 
@@ -355,11 +349,11 @@ acc1, val_acc1, loss1, val_loss1, epochs1 = do_a_run(rstate=100)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_37_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_37_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_37_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_37_2.png)
 
 
 
@@ -372,11 +366,11 @@ acc2, val_acc2, loss2, val_loss2, epochs2 = do_a_run(rstate=200)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_38_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_38_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_38_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_38_2.png)
 
 
 
@@ -389,11 +383,11 @@ acc3, val_acc3, loss3, val_loss3, epochs3 = do_a_run(rstate=300)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_39_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_39_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_39_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_39_2.png)
 
 
 ```python
@@ -405,25 +399,18 @@ acc4, val_acc4, loss4, val_loss4, epochs4 = do_a_run(rstate=400)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_40_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_40_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_40_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_40_2.png)
 
 
 
 ```python
 val_accs = np.vstack([val_acc1,val_acc2,val_acc3,val_acc4])
-```
-
-
-```python
 np.max(np.sum(val_accs, axis = 0)/4)
 ```
-
-
-
 
     0.9767463
 
@@ -454,7 +441,7 @@ plt.show()
 ```
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_44_0.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_44_0.png)
 
 
 Analyzing the results of the classification report, the model had difficulty classifying healthy potato leaves. Potato leaves tagged as healthy were being misclassified as healthy bell pepper leaves or as having late blight. The misclassification of leaves to be of a different healthy species is no real cause for alarm as it can easily be controlled when batch testing leaves. This kind of error could be attributed to leaves being in various states of folding and having irregular shapes which confuses the model into identifying potato leaves as bell pepper leaves. On the other hand, the misclassifcations of the leaves as having late blight could prove to be problematic when making decisions. If plants are though to have late blight, measures taken to mitigate its spread can be wasteful of resources.
@@ -544,10 +531,10 @@ acc1, val_acc1, loss1, val_loss1, epochs1 = do_a_run(rstate=100)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_52_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_52_1.png)
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_52_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_52_2.png)
 
 
 
@@ -559,11 +546,11 @@ acc2, val_acc2, loss2, val_loss2, epochs2 = do_a_run(rstate=200)
     105/105 [==============================] - 8s 76ms/step - loss: 0.0177 - accuracy: 0.9933 - val_loss: 0.2130 - val_accuracy: 0.9576
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_53_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_53_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_53_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_53_2.png)
 
 
 
@@ -576,11 +563,11 @@ acc3, val_acc3, loss3, val_loss3, epochs3 = do_a_run(rstate=300)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_54_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_54_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_54_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_54_2.png)
 
 
 
@@ -593,11 +580,11 @@ acc4, val_acc4, loss4, val_loss4, epochs4 = do_a_run(rstate=400)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_55_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_55_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_55_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_55_2.png)
 
 
 
@@ -610,11 +597,11 @@ acc5, val_acc5, loss5, val_loss5, epochs5 = do_a_run(rstate=500)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_56_1.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_56_1.png)
 
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_56_2.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_56_2.png)
 
 
 
@@ -622,7 +609,7 @@ acc5, val_acc5, loss5, val_loss5, epochs5 = do_a_run(rstate=500)
 val_accs = np.vstack([val_acc1,val_acc2,val_acc3,val_acc4,val_acc5])
 ```
 
-Taking the average validation accuracies of the 5 models trained on different realizations of the train-validation split, we find that the maximum accuracy it can classify across the 10 classes is `97.04%`.
+Taking the average validation accuracies of the 5 models trained on different realizations of the train-validation split, we find that the maximum accuracy it can classify across the 10 classes is **97.04%**.
 
 
 ```python
@@ -671,7 +658,7 @@ plt.show()
 ```
 
 
-![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_files/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_63_0.png)
+![png](/images/plant-disease/Take%20it%20or%20Leaf%20it%21%20%28LT%2013%29_63_0.png)
 
 
 The misclassifications from the 64x64 model showed a similar trend as the 256x256 model when handling tomato leaves with target spot. This presents similar problems to before but are less pronounced as there are less misclassifications for target spot overall. 
