@@ -1,6 +1,6 @@
 ---
 title: "Detecting Accents of Non-Native English Speakers"
-excerpt: "This is a deployment of Accent Classifier model to a simple web application using flask. The algorithm was trained on multiple voice recordings of native and non-native english speakers.<br/><br><img src='/images/accent-classifier/cover.png'>"
+excerpt: "This project deploys an Accent Classifier model to a simple web application using flask. The algorithm was trained on multiple voice recordings of native and non-native english speakers.<br/><br><img src='/images/accent-classifier/cover.png'>"
 collection: portfolio
 ---
 
@@ -15,14 +15,13 @@ This was a final project output for our <b>Data Applications and Web Development
 
  *"Please call Stella. Ask her to bring these things with her from the store: Six spoons of fresh snow peas, five thick slabs of blue cheese, and maybe a snack for her brother Bob. We also need a small plastic snake and a big toy frog for the kids. She can scoop these things into three re bags, and we will go meet her Wednesday at the train statio."*
 
- If you're interested about how the model works, check out the original machine learning project [here](https://kykyleoh.github.io/portfolio/accent-detection).
+ If you're interested about how the model works, check out the machine learning project [here](https://kykyleoh.github.io/portfolio/accent-detection).
 
 <h2>Web App</h2>
 
 <h3> Here's a screen record video on how it works</h3>
 
-You can upload any audio file (speaking the phrase specified) from your desktop/device into our application. Clicking the button **Check you accent** will output the **top 5** predictions of the model along with their probabilities. You can also play and listen to your recording on our app.
-
+You can upload any audio file (speaking the phrase specified) from your desktop/device into our application. Clicking the button **check your accent** will output the *top 5* predictions of the model along with their probabilities. You can also play and listen to your recording on our app.
 <video width='1024' height='768' controls>
   <source src="/files/accent-classifier.mov">
 </video>

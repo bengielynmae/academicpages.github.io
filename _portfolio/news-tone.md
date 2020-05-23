@@ -1,21 +1,17 @@
 ---
 title: "Predicting Winning Political Candidates From News Tone"
-excerpt: "The potential predictive power of online news coverage with respect to the winnability of certain political candidates is explored in this study. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters.<br/><br><img src='/images/news-tone/news-tone-titlecard.png'>"
+excerpt: "In this project, the predictive power of Big Data in predicting election results is explored. Using daily online news coverage, the winnability of certain political candidates can be determined.<br/><br><img src='/images/news-tone/news-tone-titlecard.png'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Big Data and Cloud Computing</b> course under Prof. Christian Alis in the M.Sc. Data Science program. This was presented to the public in December 2019.</p>
+<p>This was a final project output for our <b>Big Data and Cloud Computing</b> course under Prof. Christian Alis in the M.Sc. Data Science program. The course requires students to wrangle big data and get familiar with cloud computing services. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters. This was presented to the public in December 2019.</p>
 
 # In The News: Predicting Winning Political Candidates From News Tone
-LT 13 | Basak, Chua, Danao, Roberto
 
 ## Executive Summary
+This study used the Global Dataset of Events, Language, and Tone (GDELT) to forecast the result of the US 2016 presidential election. The dataset is composed of news around the world collected every 15 minutes. It also includes the identities of those involved and the tone of language used. A four-way race was considered in this work and 102.9 GB of data from GDELT was wrangled to perform the analysis. This was accessed on the Amazon Web Service (AWS). A time series of article mentions for each of the candidate was generated. The daily poll results during the campaign period was used as a target variable for training the model. In this work, it was demonstrated that data from news coverage can accurately predict which candidate will win. 
 
-
-```python
-
-```
 
 ## Introduction
 
@@ -31,26 +27,9 @@ With more than 321 million monthly active users in 2018, Twitter has become one 
 
 Taking advantage of this trend, many groups of researchers and programmers have mined data from Twitter, among other social media channels, and use this information to gauge people's political sentiments and therefore predict election results. In fact, a relevant paper was published by BBN Technologies, an American research and development company, showing how a candidate's popularity on Twitter can be leveraged to predict the election outcome. The authors of the said publication have collected approximately 13 billion global Twitter messages and demonstrated how they can be used for predicting the results of the Venezuelan, Paraguayan and Ecuadorian Presidential election of 2013.
 
-While online literatures abound on using Twitter analytics for "nowcasting" the results of the polls, there are very few mentions of utilizing the Global Database of Events, Language, and Tone (GDELT) when making such a political forecast, if at all. GDELT is an immensely rich pool of data, containing some trillions of rows of various types of information from different parts of the world. A more detailed explanation of GDELT is provided at the latter part of this notebook.
+While online literatures abound on using Twitter analytics for "nowcasting" the results of the polls, there are very few mentions of utilizing the Global Database of Events, Language, and Tone (GDELT) when making such a political forecast, if at all. **GDELT is an immensely rich pool of data, containing some trillions of rows of various types of information from different parts of the world.** A more detailed explanation of GDELT is provided at the latter part of this notebook.
 
 In this project, the authors intend to explore the potential predictive power of online news coverage with respect to the winnability of a certain political candidate. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters. Since news articles, as they should be, are technically less biased as compared to tweets or posts on social media, it may be inferred that the model would give a more reliable output.
-
-
-
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import pickle
-import pandas as pd
-import dask
-from sklearn.metrics import r2_score, mean_absolute_error, mean_squared_error
-from keras import layers
-from keras import models
-from sklearn.preprocessing import MinMaxScaler
-from sklearn.model_selection import train_test_split
-```
-
-    Using TensorFlow backend.
 
 
 ## Methods and Data Exploration
@@ -59,9 +38,9 @@ from sklearn.model_selection import train_test_split
 
 For this study, the data was accessed through the Registry of Open Data on Amazon Web Service (AWS). Coverage of the 2016 United States Presidential Election was obtained by extracting GDELT entries corresponding to the United States for the entire year of 2016. A four-way race was considered in this study to help augment the data.
 
-The Global Database of Events, Language, and Tone (GDELT) is an initiative whose goal is to <a href='https://www.gdeltproject.org/'> “construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet”</a>. Every 15 minutes, data is collected from news sources across the world along with the identities of those involved, their country, and the tone of language used in that piece of news with the corresponding time stamp per entry. The specific data accessed for this study was over 102.9 GB of data containing over 383 million entries.
+The Global Database of Events, Language, and Tone ([GDELT](https://www.gdeltproject.org)) is an initiative whose goal is to *“construct a catalog of human societal-scale behavior and beliefs across all countries of the world, connecting every person, organization, location, count, theme, news source, and event across the planet”*. Every 15 minutes, data is collected from news sources across the world along with the identities of those involved, their country, and the tone of language used in that piece of news with the corresponding time stamp per entry. **The specific data accessed for this study was over 102.9 GB of data containing over 383 million entries.**
 
-Direct interface with the GDELT data was done in a separate notebook that saved the relevant data for each presidential candidate as a time series.
+Direct interface with the GDELT data was done in a separate notebook that saved the relevant data for each presidential candidate as a time series. You can check it out [here](files/news-tone-wrangler.html).
 
 Below are some summary statistics for the time series of the articles obtained per candidate.
 
@@ -75,112 +54,13 @@ Each time series for a candidate was saved as a pickle file from the data wrangl
 The files relevant to this study are the daily time series for the number of mentions and articles per candidate and the number of mentions and articles per canidate weighted by their tone.
 
 
-```python
-with open('trump_n_mentions.pkl','rb') as f:
-    trump_n_m = pickle.load(f)
-with open('clinton_n_mentions.pkl','rb') as f:
-    clinton_n_m = pickle.load(f)
-with open('stein_n_mentions.pkl','rb') as f:
-    stein_n_m = pickle.load(f)
-with open('johnson_n_mentions.pkl','rb') as f:
-    johnson_n_m = pickle.load(f)
-mentions = {'Donald Trump':trump_n_m, 'Hillary Clinton':clinton_n_m,
-            'Jill Stein':stein_n_m, 'Gary Johnson': johnson_n_m}
-    
-with open('trump_n_articles.pkl','rb') as f:
-    trump_n_a = pickle.load(f)
-with open('clinton_n_articles.pkl','rb') as f:
-    clinton_n_a = pickle.load(f)
-with open('stein_n_articles.pkl','rb') as f:
-    stein_n_a = pickle.load(f)
-with open('johnson_n_articles.pkl','rb') as f:
-    johnson_n_a = pickle.load(f)
-articles = {'Donald Trump':trump_n_a, 'Hillary Clinton':clinton_n_a,
-            'Jill Stein':stein_n_a, 'Gary Johnson': johnson_n_a}
-```
-
-
-```python
-fig, ax = plt.subplots(figsize=(15,2))
-plt.title('Daily number of articles per candidate')
-plt.ylabel('Number of articles (100k)')
-plt.xlabel('Date')
-plt.plot(trump_n_a.values/100000, label = 'Trump', color = 'r', lw = 1)
-plt.plot(clinton_n_a.values/100000, label = 'Clinton', color = 'b', lw = 1)
-plt.xticks(np.linspace(0,365,13)[:-1], ('Jan', 'Feb','Mar','Apr','May','June','Jul','Aug','Sep','Oct', 'Nov', 'Dec'))
-plt.legend()
-plt.show()
-
-fig, ax = plt.subplots(figsize=(15,2))
-plt.title('Daily number of mentions per candidate')
-plt.ylabel('Number of articles (100k)')
-plt.xlabel('Date')
-plt.plot(trump_n_m.values/100000, label = 'Trump', color = 'r', lw = 1)
-plt.plot(clinton_n_m.values/100000, label = 'Clinton', color = 'b', lw = 1)
-plt.xticks(np.linspace(0,365,13)[:-1], ('Jan', 'Feb','Mar','Apr','May','June','Jul','Aug','Sep','Oct', 'Nov', 'Dec'))
-plt.legend()
-plt.show()
-```
-
-
 ![png](/images/news-tone/articles.png)
-
 
 
 ![png](/images/news-tone/mentions.png)
 
 
 It can be observed that daily number of articles and mentions per candidate have very little difference with one another suggesting that the underlying behavior for both is also similar. With the way GDELT collected and measure the number of mentions, it appears that for each article, there is approximately 1 mention for both Hillary Clinton and Donald Trump.
-
-
-```python
-with open('trump_n_artitone.pkl','rb') as f:
-    trump_n_at = pickle.load(f)
-with open('clinton_n_artitone.pkl','rb') as f:
-    clinton_n_at = pickle.load(f)
-with open('stein_n_artitone.pkl','rb') as f:
-    stein_n_at = pickle.load(f)
-with open('johnson_n_artitone.pkl','rb') as f:
-    johnson_n_at = pickle.load(f)
-artitones = {'Donald Trump':trump_n_at, 'Hillary Clinton':clinton_n_at,
-             'Jill Stein':stein_n_at, 'Gary Johnson': johnson_n_at}
-
-    
-with open('trump_n_menttone.pkl','rb') as f:
-    trump_n_mt = pickle.load(f)
-with open('clinton_n_menttone.pkl','rb') as f:
-    clinton_n_mt = pickle.load(f)
-with open('stein_n_menttone.pkl','rb') as f:
-    stein_n_mt = pickle.load(f)
-with open('johnson_n_menttone.pkl','rb') as f:
-    johnson_n_mt = pickle.load(f)
-menttones = {'Donald Trump':trump_n_mt, 'Hillary Clinton':clinton_n_mt,
-             'Jill Stein':stein_n_mt, 'Gary Johnson': johnson_n_mt}
-```
-
-
-```python
-fig, ax = plt.subplots(figsize=(15,2))
-plt.title('Daily number of articles with tone per candidate')
-plt.ylabel('Number of articles*tone (100k)')
-plt.xlabel('Date')
-plt.plot(trump_n_at.values/100000, label = 'Trump', color = 'r', lw = 1)
-plt.plot(clinton_n_at.values/100000, label = 'Clinton', color = 'b', lw = 1)
-plt.xticks(np.linspace(0,365,13)[:-1], ('Jan', 'Feb','Mar','Apr','May','June','Jul','Aug','Sep','Oct', 'Nov', 'Dec'))
-plt.legend()
-plt.show()
-
-fig, ax = plt.subplots(figsize=(15,2))
-plt.title('Daily number of articles with tone per candidate')
-plt.ylabel('Number of mentions*tone (100k)')
-plt.xlabel('Date')
-plt.plot(trump_n_mt.values/100000, label = 'Trump', color = 'r', lw = 1)
-plt.plot(clinton_n_mt.values/100000, label = 'Clinton', color = 'b', lw = 1)
-plt.xticks(np.linspace(0,365,13)[:-1], ('Jan', 'Feb','Mar','Apr','May','June','Jul','Aug','Sep','Oct', 'Nov', 'Dec'))
-plt.legend()
-plt.show()
-```
-
 
 ![png](/images/news-tone/articles-tone.png)
 
@@ -202,110 +82,6 @@ This data was retrieved from the site as of December 1, 2019 and placed into a s
 df_poll = pd.read_excel('poll_data_edit.xlsx', sheet_name='Four-way error')
 ```
 
-
-```python
-df_poll.head()
-```
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>Poll Source</th>
-      <th>Date</th>
-      <th>Hillary Clinton</th>
-      <th>Donald Trump</th>
-      <th>Gary Johnson</th>
-      <th>Jill Stein</th>
-      <th>Leading By (Points)</th>
-      <th>Sample size</th>
-      <th>Margin of error</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0</td>
-      <td>YouGov/The Economist[5]</td>
-      <td>20191104</td>
-      <td>0.45</td>
-      <td>0.41</td>
-      <td>0.05</td>
-      <td>0.02</td>
-      <td>4</td>
-      <td>3677.0</td>
-      <td>± 1.7%</td>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Insights West[561]</td>
-      <td>20191104</td>
-      <td>0.49</td>
-      <td>0.45</td>
-      <td>0.04</td>
-      <td>0.01</td>
-      <td>4</td>
-      <td>940.0</td>
-      <td>± 3.2%</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Bloomberg News/Selzer[6]</td>
-      <td>20191104</td>
-      <td>0.44</td>
-      <td>0.41</td>
-      <td>0.04</td>
-      <td>0.02</td>
-      <td>3</td>
-      <td>799.0</td>
-      <td>± 3.5%</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Gravis Marketing[562]</td>
-      <td>20191103</td>
-      <td>0.47</td>
-      <td>0.43</td>
-      <td>0.03</td>
-      <td>0.02</td>
-      <td>4</td>
-      <td>16639.0</td>
-      <td>± 0.8%</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>ABC News/Washington Post[7]</td>
-      <td>20191103</td>
-      <td>0.47</td>
-      <td>0.43</td>
-      <td>0.04</td>
-      <td>0.01</td>
-      <td>4</td>
-      <td>2220.0</td>
-      <td>± 2.5%</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
-
-
 An encoding error converted all the years to 2019 when in fact they pertain to the 2016 election. This is resolved.
 
 
@@ -316,13 +92,6 @@ df_poll['Date'] = df_poll['Date'].astype(int)
 ```
 
 
-```python
-df_poll.head()
-```
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -416,7 +185,6 @@ df_poll.head()
   </tbody>
 </table>
 </div>
-
 
 
 Values for each candidate represent the percentage of those surveyed that said they would vote for said candidate.
@@ -486,188 +254,6 @@ def person_df(name, ser = 'mentions', time_span = 21):
 
 The resulting dataframe has rows equal to the number of nationwide opinion polls and columns equal to the number of days prior to each. Additionally, a `target` column is included which contains the poll target which is the result of the poll for that presidential candidate.
 
-
-```python
-trump_df = person_df('Donald Trump', time_span = t_span, ser ='articles')
-print(trump_df.shape)
-trump_df.head()
-```
-
-    (274, 22)
-
-
-
-
-
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>0</th>
-      <th>1</th>
-      <th>2</th>
-      <th>3</th>
-      <th>4</th>
-      <th>5</th>
-      <th>6</th>
-      <th>7</th>
-      <th>8</th>
-      <th>9</th>
-      <th>...</th>
-      <th>12</th>
-      <th>13</th>
-      <th>14</th>
-      <th>15</th>
-      <th>16</th>
-      <th>17</th>
-      <th>18</th>
-      <th>19</th>
-      <th>20</th>
-      <th>target</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>0-20161104</td>
-      <td>234529.0</td>
-      <td>80112.0</td>
-      <td>64313.0</td>
-      <td>82642.0</td>
-      <td>130800.0</td>
-      <td>139933.0</td>
-      <td>159503.0</td>
-      <td>113834.0</td>
-      <td>61339.0</td>
-      <td>57828.0</td>
-      <td>...</td>
-      <td>82606.0</td>
-      <td>89409.0</td>
-      <td>85968.0</td>
-      <td>37763.0</td>
-      <td>36828.0</td>
-      <td>64673.0</td>
-      <td>92454.0</td>
-      <td>99912.0</td>
-      <td>121350.0</td>
-      <td>0.41</td>
-    </tr>
-    <tr>
-      <td>1-20161104</td>
-      <td>234529.0</td>
-      <td>80112.0</td>
-      <td>64313.0</td>
-      <td>82642.0</td>
-      <td>130800.0</td>
-      <td>139933.0</td>
-      <td>159503.0</td>
-      <td>113834.0</td>
-      <td>61339.0</td>
-      <td>57828.0</td>
-      <td>...</td>
-      <td>82606.0</td>
-      <td>89409.0</td>
-      <td>85968.0</td>
-      <td>37763.0</td>
-      <td>36828.0</td>
-      <td>64673.0</td>
-      <td>92454.0</td>
-      <td>99912.0</td>
-      <td>121350.0</td>
-      <td>0.45</td>
-    </tr>
-    <tr>
-      <td>2-20161104</td>
-      <td>234529.0</td>
-      <td>80112.0</td>
-      <td>64313.0</td>
-      <td>82642.0</td>
-      <td>130800.0</td>
-      <td>139933.0</td>
-      <td>159503.0</td>
-      <td>113834.0</td>
-      <td>61339.0</td>
-      <td>57828.0</td>
-      <td>...</td>
-      <td>82606.0</td>
-      <td>89409.0</td>
-      <td>85968.0</td>
-      <td>37763.0</td>
-      <td>36828.0</td>
-      <td>64673.0</td>
-      <td>92454.0</td>
-      <td>99912.0</td>
-      <td>121350.0</td>
-      <td>0.41</td>
-    </tr>
-    <tr>
-      <td>3-20161103</td>
-      <td>210238.0</td>
-      <td>234529.0</td>
-      <td>80112.0</td>
-      <td>64313.0</td>
-      <td>82642.0</td>
-      <td>130800.0</td>
-      <td>139933.0</td>
-      <td>159503.0</td>
-      <td>113834.0</td>
-      <td>61339.0</td>
-      <td>...</td>
-      <td>83391.0</td>
-      <td>82606.0</td>
-      <td>89409.0</td>
-      <td>85968.0</td>
-      <td>37763.0</td>
-      <td>36828.0</td>
-      <td>64673.0</td>
-      <td>92454.0</td>
-      <td>99912.0</td>
-      <td>0.43</td>
-    </tr>
-    <tr>
-      <td>4-20161103</td>
-      <td>210238.0</td>
-      <td>234529.0</td>
-      <td>80112.0</td>
-      <td>64313.0</td>
-      <td>82642.0</td>
-      <td>130800.0</td>
-      <td>139933.0</td>
-      <td>159503.0</td>
-      <td>113834.0</td>
-      <td>61339.0</td>
-      <td>...</td>
-      <td>83391.0</td>
-      <td>82606.0</td>
-      <td>89409.0</td>
-      <td>85968.0</td>
-      <td>37763.0</td>
-      <td>36828.0</td>
-      <td>64673.0</td>
-      <td>92454.0</td>
-      <td>99912.0</td>
-      <td>0.43</td>
-    </tr>
-  </tbody>
-</table>
-<p>5 rows × 22 columns</p>
-</div>
-
-
-
 A dataframe containing all the candidates is constructed.
 
 
@@ -680,15 +266,12 @@ X = alls[list(range(t_span))]
 y = alls['target']
 ```
 
-
 ```python
 print(alls.shape)
 alls.head()
 ```
 
     (1096, 22)
-
-
 
 
 
@@ -916,9 +499,7 @@ Min-Max scaling will be performed on the training set. The scaler will then be u
 scaler = MinMaxScaler()
 ```
 
-The training and test sets are divided into with an 80:20 ratio.
-
-The results of the training after 100 different realizations of these splits is performed.
+The training and test sets are divided into with an 80:20 ratio. The results of the training after 100 different realizations of these splits is performed.
 
 
 ```python
@@ -943,35 +524,24 @@ ave_acc = acc_ave/ran
 ave_mae = mae_ave/ran
 ave_mse = mse_ave/ran
 ```
-
-    99
-
-The average goodness of fit is quite high at 97.165 which suggests that the model was able to explain variations in the time series well.
-
-
 ```python
 round(100*ave_acc,3)
 ```
 
 
-
-
     97.165
 
-
-
-The average MAE is shown to be 2.505 which is lower than some of the margins of error reported by the polls.
-
+The average goodness of fit is quite high at 97.165 which suggests that the model was able to explain variations in the time series well.
 
 ```python
 round(100*ave_mae,3)
 ```
 
 
-
-
     2.505
 
+
+The average MAE is shown to be 2.505 which is lower than some of the margins of error reported by the polls.
 
 
 A helper function is defined to test the prediction of the model on the election day itself.
@@ -1015,8 +585,6 @@ mod.summary()
 
 
 Based on the results of the 2016 United States Presidential election, we examine the model's predictions per candidate and compare them with the actual results of the election.
-
-On the left is the model's prediction on the results on November 8, 2016 and on the right is the actual percentage of voters that voted for each candidate.
 
 
 ```python
@@ -1066,7 +634,7 @@ On the left is the model's prediction on the results on November 8, 2016 and on 
 
 
 
-While the model failed to predict well the actual percentage of voters per candidate, it was still able to capture and predict the final ranking of the candidates. If the United States election were won by a simple popular vote, the model produced by this study would have been able to predict the winner. 
+While the model performed weakly in predicting the actual percentage of voters per candidate, it was still able to capture and predict the final ranking of the candidates. If the United States election were won by a simple popular vote, the model produced by this study would have been able to predict the winner. 
 
 ## Conclusion and Recommendation
 
@@ -1076,8 +644,8 @@ Predicting election outcomes is one problem that can be solved with data. In thi
 
 For future work, the same approach could be experimented on different political posts such as vice president, senator, or congressman. Instead of conducting the predictive analysis on a national level, a state-wide analysis may as well be explored.
 
-### Documnet
-The presentation deck for this study can be viewed [here](/files/news-tone.pdf)
+### Document
+The presentation deck for this study can be viewed [here](/files/news-tone.pdf).
 
 ### References
 
@@ -1086,10 +654,4 @@ https://registry.opendata.aws/gdelt/
 https://en.wikipedia.org/wiki/Nationwide_opinion_polling_for_the_2016_United_States_presidential_election
 
 ### Acknowledgements
-
-We thank Sir Eduardo David Jr., Asst Prof Christian Alis, PH.D., Assoc. Prof. Erika Legara PH.D., MSDS Admin, and MSDS 2020 for the guidance and assistance in making this study possible. 
-
-
-```python
-
-```
+This project was completed together with my learning teammates Gilbert Chua, Roy Roberto, and Jishu Basak. 
