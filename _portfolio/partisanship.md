@@ -1,5 +1,5 @@
 ---
-title: "Uncovering Networks from  US Congress Rollcall Votes 1947-2019"
+title: "Uncovering Networks in the US Congress 1947-2019"
 excerpt: "Add.<br/><br><img src='/images/partisanship/partisanship-cover.png'>"
 collection: portfolio
 ---
@@ -7,6 +7,7 @@ collection: portfolio
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Network Science</b> course under Prof. Erika Legara in the M.Sc. Data Science program. This was presented to class in March 2020.</p>
 
+# A Network Analysis on Partisanship in Congressional Rollcall Votes
 
 ### Packages and Libraries
 ```python
@@ -453,14 +454,14 @@ fig.savefig('Cong111vs115.png', transparent=True)
 # fig.suptitle('House of Representatives\nCongress 112 vs. 115', fontsize=50);
 ```
 
-![png](images/partisanship/majority-party.png)
+![png](/images/partisanship/majority-party.png)
 
 ### Research Paper Available
-The journal article for this study can be accessed [here](/files/partisanship-paper.pdf)
+The journal article for this study can be accessed [here](/files/partisanship-paper.pdf).
 
-### Document
-This can also be viewed as a presentation deck [here](/files/partisanship-deck.pdf)
+It can also be viewed as a synthesized version in this presentation [deck](/files/partisanship-deck.pdf). 
+
 
 ### Acknowledgement
-This study was completed together with my project partner Kyle Ong. 
+This study was completed together with my project partner and co-author [Kyle Ong](kykyleoh.github.io). 
 
