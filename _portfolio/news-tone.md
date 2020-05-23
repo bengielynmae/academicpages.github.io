@@ -1,6 +1,6 @@
 ---
 title: "Predicting Winning Political Candidates From News Tone"
-excerpt: "This potential predictive power of online news coverage with respect to the winnability of a certain political candidate was explored in this study. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters.<br/><br><img src='/images/news-tone/news-tone-titlecard.png'>"
+excerpt: "The potential predictive power of online news coverage with respect to the winnability of certain political candidates is explored in this study. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters.<br/><br><img src='/images/news-tone/news-tone-titlecard.png'>"
 collection: portfolio
 ---
 
