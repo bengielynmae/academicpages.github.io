@@ -1,18 +1,18 @@
 ---
 title: "Uncovering Networks in the US Congress 1947-2019"
-excerpt: "Add.<br/><br><img src='/images/partisanship/partisanship-cover.png'>"
+excerpt: "The widening partisan divide in the US Congress was examined using network science. We look at the solidarity of each party and the cooperation among different parties over time.<br/><br><img src='/images/partisanship/partisanship-cover.png'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Network Science</b> course under Prof. Erika Legara in the M.Sc. Data Science program. In this study, we examine the trend in partisanship of the US Congress over the past 72 years. Using a network approach, we look at the polarity/cooperation of house and senate members across party lines. This was presented to class in March 2020.</p>
+<p>This was a final project output for our <b>Network Science</b> course under Prof. Erika Legara in the M.Sc. Data Science program. In this study, we examine the trend of partisanship in the US Congress over the past 72 years. Using a network approach, we look at the extent of polarity / cooperation of house and senate members across party lines. This was presented to class in March 2020.</p>
 
 <br><br>
 # A Network Analysis on Partisanship in Congressional Rollcall Votes
 
-
 ## Summary
-
+This work examines the widening partisan divide in the United States Congress using the framework of network science. By using the cosine similarity of members' votes in rollcalls, their polarity from each other and the mangnitude of similarity can be determined. By looking at the intra-party and inter-party similarity scores of the different
+networks, we form a picture of the solidarity of each party and the cooperation across party lines throughout the duration of the data.
 
 ## Dataset
 The dataset was collected from the UCLA Department of Political Science's Voteview initiative that tracks every Congressional rollcall votte in the history of the United States Congress. It contains information such as the members of both chambers of Congress for every Congress, the political affiliations of each member, and a record of every rollcall vote called along the votes of every member. The dataset is available [here](https://kaggle.com/voteview/congressional-voting-records#HSall_rollcalls.csv). Explanations are also available for every file: [rollcall](https://voteview.com/articles/data_help_rollcalls), [votes](https://voteview.com/articles/data_help_votes), [parties](https://voteview.com/articles/data_help_parties), and [members](https://voteview.com/articles/data_help_members)
@@ -184,17 +184,18 @@ for i in tqdm(range(80,116)):
 ```
 
 ### Average Cosine Similarity Over Time (House and Senate)
-<br>
 
+By looking at the average degree of each network, we are effectively looking at how similar the voting patterns are of each party in both the House and Senate chambers of Congress. This tells us how similar persons in the same political party vote with regard to rollcalls. 
 
 ![png](/images/partisanship/ave-cossim-senate.png)
 
 
 ![png](/images/partisanship/ave-cossim-house.png)
 
+We can observe a general uptrend in the average similarity of voting patterns with occasional spikes and declines. The largest drop can be in the 114th Congress which was the last years of Obama's administration. 
 
 ### Cooperation between parties
-This is measured by getting the average cosine distance between each member of one party against each member of the opposing party. Do this for all members of the first party, and get the average.
+This is measured by getting the average cosine distance between each member of one party against each member of the opposing party. Do this for all members of the first party, and get the average. It represents the level of agreement or bipartisanship that exists in both chambers. 
 
 
 ```python
@@ -223,43 +224,46 @@ def get_cooperation(G, chamber, weight='cosdist'):
 
 ![png](/images/partisanship/coop-score.png)
 
+We can see a downward trend in contrast to the similarity score. Expectedly, a higher intra-party similarity (partisan voting) leads to lower inter-party similarity (bipartisan voting). The highlight in red shows the period of the Iraq war while the highlight in gray shows the globan financial crisis. 
 
-#### Clustering Coefficient
+## Finding the largest difference (delta) in cooperation in Congress
+Which congress had the largest rise/fall in terms of partisanship?
 
-```python
-clust_rep = []
-for i in range(80,116):
-    clust_rep.append(nx.average_clustering(net[i].get_subgraph('senate', 'rep'), weight='cossim'))
-```
-
+We also looked at the change in cooperation score, specifically the direction and magnitude of change between two congresses. 
 
 ```python
-clust_dem = []
-for i in range(80,116):
-    clust_dem.append(nx.average_clustering(net[i].get_subgraph('senate', 'dem'), weight='cossim'))
+house_cossim, senate_cossim = [], []
+
+for congress in tqdm(range(80, 116)):
+    senate_cossim.append(get_average_edges(net[congress].senate, 'cossim'))
+    house_cossim.append(get_average_edges(net[congress].house, 'cossim'))
 ```
+
+```python
+senate_cossim_colors = ['grey' if i < np.max(np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim])) \
+                       else 'green' for i in np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim])]
+senate_cossim_colors[np.argmin(np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim]))] = 'maroon'
+```
+
+![png](/images/partisanship/cossim-senate.png)
+
 
 
 ```python
-clust_reph = []
-for i in tqdm(range(80,116)):
-    clust_reph.append(nx.average_clustering(net[i].get_subgraph('house', 'rep'), weight='cossim'))
+house_cossim_colors = ['grey' if i < np.max(np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim])) \
+                       else 'green' for i in np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim])]
+house_cossim_colors[np.argmin(np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim]))] = 'maroon'
 ```
 
+![png](/images/partisanship/cossim-house.png)
 
-```python
-clust_demh = []
-for i in tqdm(range(80,116)):
-    clust_demh.append(nx.average_clustering(net[i].get_subgraph('house', 'dem'), weight='cossim'))
-```
-
-![png](/images/partisanship/cluster-coeff-house.png)
-
-
-![png](/images/partisanship/cluster-coeff-senate.png)
+We can see that during the 111th-112th Congress, the Senate
+experienced its second-highest positive change in magnitude of cooperation score, indicating that the Senate chamber voted more in line with their party as compared to the 111th Congress. On the other hand, the House of Representatives experienced the largest
+negative change in similarity during this period. This indicates that the 112th Congress was vastly more bipartisan than the 111th Congress. 
 
 
 ### Outliers
+Using the network degrees, we can also take a look at the outliers for each chamber over time. Outliers are defined as being 2 standard deviations away from the mean cosine similarity of a given congress. Looking at the outliers,we can identify those members of congress that are not fully aligned with their respective political parties. 
 
 ```python
 def get_average_edges(G, weight='cosdist'):
@@ -290,76 +294,46 @@ fig, ax = plt.subplots(dpi=300, figsize=(10,10))
 ax.axis('off')
 nx.draw_networkx_nodes(G, pos, node_size=[np.nanmean([v['cosdist']*1000 for k,v in dict(G[node]).items()]) for node in G.nodes], node_color=node_colors, alpha=0.7);
 nx.draw_networkx_edges(G, pos, alpha=0.3, edge_color='gray', width=0.5);
-# fig.savefig('senate115rep_outliers.png', transparent=True)
 
 nx.draw_networkx_labels(G, pos, font_color="white", font_size=8);
-# if save is not None:
-#     fig.savefig(save+'.png', transparent=True);
 ```
 
-![png](/images/partisanship/outliers.png)
+![png](/images/partisanship/outliers.png)![png](/images/partisanship/outliers-red.png)
 
+#### Clustering Coefficient
+This looks at how tightly knit the parties are. It can be seen that they have gotten more tightly knit over the years especially during the appointment of Trum (115th Congress). 
 
-## Finding the largest difference (delta) in cooperation in Congress
-* which congress had the largest rise/fall in terms of partisanship?
+```python
+clust_rep = []
+for i in range(80,116):
+    clust_rep.append(nx.average_clustering(net[i].get_subgraph('senate', 'rep'), weight='cossim'))
+
+clust_reph = []
+for i in tqdm(range(80,116)):
+    clust_reph.append(nx.average_clustering(net[i].get_subgraph('house', 'rep'), weight='cossim'))
+```
 
 
 ```python
-# get the cosine similarity score of all congresses for both house and senate
-house_cossim, senate_cossim = [], []
+clust_dem = []
+for i in range(80,116):
+    clust_dem.append(nx.average_clustering(net[i].get_subgraph('senate', 'dem'), weight='cossim'))
 
-for congress in tqdm(range(80, 116)):
-    senate_cossim.append(get_average_edges(net[congress].senate, 'cossim'))
-    house_cossim.append(get_average_edges(net[congress].house, 'cossim'))
+clust_demh = []
+for i in tqdm(range(80,116)):
+    clust_demh.append(nx.average_clustering(net[i].get_subgraph('house', 'dem'), weight='cossim'))
 ```
 
-```python
-senate_cossim_colors = ['grey' if i < np.max(np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim])) \
-                       else 'green' for i in np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim])]
-senate_cossim_colors[np.argmin(np.diff([np.nanmean([j[1] for j in i]) for i in senate_cossim]))] = 'maroon'
-```
-
-![png](/images/partisanship/cossim-senate.png)
+![png](/images/partisanship/cluster-coeff-house.png)
 
 
+![png](/images/partisanship/cluster-coeff-senate.png)
 
-```python
-house_cossim_colors = ['grey' if i < np.max(np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim])) \
-                       else 'green' for i in np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim])]
-house_cossim_colors[np.argmin(np.diff([np.nanmean([j[1] for j in i]) for i in house_cossim]))] = 'maroon'
-```
-
-![png](/images/partisanship/cossim-house.png)
-
-
-#### Get the majority party per chamber of congress:
-
-
-```python
-house_majority = members[members['chamber']=='House'].groupby('congress')['party_code'].\
-value_counts().rename(columns={'party_code':'party'}).reset_index(level=1)\
-.reset_index(col_level=1).drop_duplicates(subset='congress', keep='first')\
-[['congress', 'party_code']].query('congress > 79')
-
-senate_majority = members[members['chamber']=='Senate'].groupby('congress')['party_code'].\
-value_counts().rename(columns={'party_code':'party'}).reset_index(level=1)\
-.reset_index(col_level=1).drop_duplicates(subset='congress', keep='first')\
-[['congress', 'party_code']].query('congress > 79')
-
-house_majority['party_code'] = house_majority['party_code'].map({200:'rep', 100:'dem'})
-senate_majority['party_code'] = senate_majority['party_code'].map({200:'rep', 100:'dem'})
-```
+### Network of the 115th House of Representatives
 
 ```python
 fig, ax = plt.subplots(2,1,dpi=300, figsize=(15,30))
 weight = 'cossim'
-pos = nx.fruchterman_reingold_layout(net[111].house, weight=weight)
-ax[0].axis('off')
-nx.draw_networkx_nodes(net[111].house, pos, node_size=150, node_color=[net[111].house.node[i]['party_color'] if not net[111].house.node[i]['party_color'] \
-                    not in ['darkblue', 'maroon']  else 'gray' for i in net[111].house.nodes], alpha=0.7, ax=ax[0]);
-nx.draw_networkx_edges(net[111].house, pos, alpha=0.05, edge_color='lightgray', width=0.5, ax=ax[0]);
-ax[0].set_title('Congress 111', fontsize=20)
-
 pos2 = nx.fruchterman_reingold_layout(net[115].house, weight=weight)
 ax[1].axis('off')
 nx.draw_networkx_nodes(net[115].house, pos2, node_size=150, node_color=[net[115].house.node[i]['party_color'] if not net[115].house.node[i]['party_color'] \
@@ -367,15 +341,33 @@ nx.draw_networkx_nodes(net[115].house, pos2, node_size=150, node_color=[net[115]
 nx.draw_networkx_edges(net[115].house, pos2, alpha=0.05, edge_color='lightgray', width=0.5, ax=ax[1]);
 ax[1].set_title('Congress 115', fontsize=20);
 fig.savefig('Cong111vs115.png', transparent=True)
-# fig.suptitle('House of Representatives\nCongress 112 vs. 115', fontsize=50);
 ```
 
 ![png](/images/partisanship/majority-party.png)
 
+### The evolution of the networks over time is shown below:
+
+**Senate** 
+
+<video width='960' height='720' controls>
+  <source src="/files/evolution-senate.mp4">
+</video>
+
+**House**
+
+<video width='960' height='720' controls>
+  <source src="/files/evolution-house.mp4">
+</video>
+
+
+### Conclusion
+
+Our analysis shows that partisanship in both the House of Representatives and the Senate has intensified significantly over the past 72 years. Voting behavior of members are more likely influenced by political identity rather than by their distinctive view on the motions passed. The decisions members make could also be influenced by the ideological positions and charisma of their party leaders. The administration’s way of leadership and the president’s effectiveness at motivating or persuading partisans could be another factor. There are complex interactions that drive decision-making of these congress members and even though our data does not provide clear evidence on the association of these factors to partisanship, their effects are observable.
+
 ### Research Paper Available
 The journal article for this study can be accessed [here](/files/partisanship-paper.pdf).
 
-It can also be viewed as a synthesized version in this presentation [deck](/files/partisanship-deck.pdf). 
+This can also be viewed as a synthesized version with visual representations in this presentation [deck](/files/partisanship-deck.pdf). 
 
 
 ### Acknowledgement
