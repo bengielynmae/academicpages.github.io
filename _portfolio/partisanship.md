@@ -27,7 +27,7 @@ We want to convert the data into a matrix such that:
 
 A network for each chamber of congress (House and Senate) has to be constructed where the nodes represent each member and the edges tell how similarly each member votes with another member. The network is expected to be a fully connected network since an edge exists between all possible pairs of members. In this work, blue nodes are the Democrats, red nodes are the Republicans, and gray nodes are other parties.
 
-### Packages and Libraries
+## Packages and Libraries
 ```python
 
 import networkx as nx
@@ -226,7 +226,7 @@ def get_cooperation(G, chamber, weight='cosdist'):
 
 We can see a downward trend in contrast to the similarity score. Expectedly, a higher intra-party similarity (partisan voting) leads to lower inter-party similarity (bipartisan voting). The highlight in red shows the period of the Iraq war while the highlight in gray shows the globan financial crisis. 
 
-## Finding the largest difference (delta) in cooperation in Congress
+### Finding the largest difference (delta) in cooperation in Congress
 Which congress had the largest rise/fall in terms of partisanship?
 
 We also looked at the change in cooperation score, specifically the direction and magnitude of change between two congresses. 
@@ -300,7 +300,7 @@ nx.draw_networkx_labels(G, pos, font_color="white", font_size=8);
 
 ![png](/images/partisanship/outliers.png)![png](/images/partisanship/outliers-red.png)
 
-#### Clustering Coefficient
+### Clustering Coefficient
 This looks at how tightly knit the parties are. It can be seen that they have gotten more tightly knit over the years especially during the appointment of Trum (115th Congress). 
 
 ```python
@@ -330,6 +330,7 @@ for i in tqdm(range(80,116)):
 ![png](/images/partisanship/cluster-coeff-senate.png)
 
 ### Network of the 115th House of Representatives
+In the latest US Congress, this is what the representation of the House of Representatives looks like - very polarized. Edge lengths represent the cosine similarity between every member. 
 
 ```python
 fig, ax = plt.subplots(2,1,dpi=300, figsize=(15,30))
@@ -345,31 +346,30 @@ fig.savefig('Cong111vs115.png', transparent=True)
 
 ![png](/images/partisanship/majority-party.png)
 
-### The evolution of the networks over time is shown below:
+## The evolution of the networks over time is shown below:
+<br><br>
+**The Senate** 
 
-**Senate** 
-
-<video width='960' height='720' controls>
+<video width='640' height='480' controls>
   <source src="/files/evolution-senate.mp4">
 </video>
+<br><br>
+**House of Representatives**
 
-**House**
-
-<video width='960' height='720' controls>
+<video width='640' height='480' controls>
   <source src="/files/evolution-house.mp4">
 </video>
 
 
-### Conclusion
+## Conclusion
 
 Our analysis shows that partisanship in both the House of Representatives and the Senate has intensified significantly over the past 72 years. Voting behavior of members are more likely influenced by political identity rather than by their distinctive view on the motions passed. The decisions members make could also be influenced by the ideological positions and charisma of their party leaders. The administration’s way of leadership and the president’s effectiveness at motivating or persuading partisans could be another factor. There are complex interactions that drive decision-making of these congress members and even though our data does not provide clear evidence on the association of these factors to partisanship, their effects are observable.
 
 ### Research Paper Available
-The journal article for this study can be accessed [here](/files/partisanship-paper.pdf).
+* The journal article for this study can be accessed [here](/files/partisanship-paper.pdf).
+* This can also be viewed as a synthesized version with visual representations in this presentation [deck](/files/partisanship-deck.pdf). 
 
-This can also be viewed as a synthesized version with visual representations in this presentation [deck](/files/partisanship-deck.pdf). 
 
-
-### Acknowledgement
+### Acknowledgements
 This study was completed together with my project partner and co-author [Kyle Ong](kykyleoh.github.io). 
 
