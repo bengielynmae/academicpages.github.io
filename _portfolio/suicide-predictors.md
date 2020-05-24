@@ -15,7 +15,7 @@ collection: portfolio
 Prepared by Bengielyn Danao
 
 ## Executive Summary
-Suicide and suicide attempts are very challenging to predict because it is an end result of complex social, psychological, and biological interactions. Statistically speaking, it is also rare in terms of reported instances. Machine learning is now put forward as a tool that could improve the accuracy of predicting suicide and its predictors. An existing study from the Department of Psychiatry, University of Texas Health Science Center used information from 144 subjects and got an accuracy of 72%. Similarly, this study has used demographic data from a survey of **496 respondents**. Using the **Random Forest Classifier**, an accuracy of 81% has been obtained and the model identified **depression** as the highest predictor of suicide attempts. 
+Suicide and suicide attempts are very challenging to predict because it is an end result of complex social, psychological, and biological interactions. Statistically speaking, it is also rare in terms of reported instances. Machine learning is now put forward as a tool that could improve the accuracy of predicting suicide and its predictors. An existing study from the Department of Psychiatry, University of Texas Health Science Center used information from 144 subjects and got an accuracy of 72%. Similarly, this study has used demographic data from a survey of 496 respondents. **Using the Random Forest Classifier, an accuracy of 81% has been obtained and the model identified depression as the highest predictor of suicide attempts.** 
 
 ## Data Source
 
@@ -352,67 +352,16 @@ for num in high:
 
 
 ```python
-bodyweight = {
-'underweight': 1,
-'normal weight': 2,
-'overweight': 3,
-'obese':4}
 clean_dum['bodyweight'] = clean_dum['bodyweight'].map(bodyweight)
-```
-
-
-```python
-income_map = {
-'low': 1,
-'mid': 2,
-'high': 3}
-
 clean_dum['income'] = clean_dum['income'].map(income_map)
-```
-
-
-```python
-virgin_map = {
-'Yes': 1,
-'No': 0}
-
 clean_dum['virgin'] = clean_dum['virgin'].map(virgin_map)
-```
-
-
-```python
-social_fear = {
-'Yes': 1,
-'No': 0}
-
 clean_dum['social_fear'] = clean_dum['social_fear'].map(social_fear)
-```
-
-
-```python
-suicide_attempt = {
-'Yes': 1,
-'No': 0}
-
 clean_dum['attempt_suicide'] = clean_dum['attempt_suicide'].map(suicide_attempt)
-```
-
-
-```python
-depressed_map = {
-'Yes': 1,
-'No': 0}
-
 clean_dum['depressed'] = clean_dum['depressed'].map(depressed_map)
 ```
 
-
 ```python
 new_dummy = pd.get_dummies(clean_dum)
-```
-
-```python
-new_dummy.head()
 ```
 
 
@@ -702,7 +651,7 @@ plt.tight_layout()
 ![png](/images/suicide-predictors/improve-help.png)
 
 
-Almost half of the users say they do not want help but 70% are actually willing to improve themselves. This could imply that a significant number of them are uncomfortable of exteranl help or reaching out to someone else. 
+Almost half of the users say they do not want help but 70% are actually willing to improve themselves. This could imply that a significant number of them are uncomfortable of external help or reaching out to someone else. 
 
 
 ```python

@@ -9,7 +9,7 @@ collection: portfolio
 This was a final project output for our <b>Data Applications and Web Development</b> course under Sir Eduardo David in the M.Sc. Data Science program. The goal of the project is to deploy a Machine Learning or Deep Learning model to a simple web application using flask. The model used for this project is based on the work of my class partner [Kyle Ong](https://kykyleoh.github.io).
 
 <h2>Description</h2>
- English is a global language and it is spoken in many different parts of the world. Becasue of the diversity of people that speak the language, it also branched out to different ways of speaking it over time. Using the Wildcat Speech Accent Archive, our app can classify accents among 6 different countries. 
+ English is a global language and it is spoken in many different parts of the world. Because of the diversity of people who speak the language, different ways of speaking it and different accents have developed over time. Using the `Wildcat Speech Accent Archive`, our app can classify accents among 6 different countries. 
 
  The model used was trained on recordings speaking the following phrase:
 
@@ -19,7 +19,7 @@ This was a final project output for our <b>Data Applications and Web Development
 
 <h2>Web App</h2>
 
-<h3> Here's a screen record video on how it works</h3>
+<h3> Here's a screen recording video of how it works:</h3>
 
 You can upload any audio file (speaking the phrase specified) from your desktop/device into our application. Clicking the button **check your accent** will output the *top 5* predictions of the model along with their probabilities. You can also play and listen to your recording on our app.
 <video width='1024' height='768' controls>

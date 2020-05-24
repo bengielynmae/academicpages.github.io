@@ -9,13 +9,13 @@ collection: portfolio
 This was a final project output for our <b>Data Applications and Web Development</b> course under Sir Eduardo David in the M.Sc. Data Science program. The goal of the project is to deploy a Machine Learning or Deep Learning model to a simple web application using flask. The model used for this project is based on the code of [github.com/SupratimH/DeepArtist](https://github.com/SupratimH/applying-ml-use-cases/tree/master/DeepArtist-Identify-Artist-From-Art).
 
 <h2>Description</h2>
-In the age of the internet, digital captures of art and paintings have become extensive - from the works of old masters to creations of modern painters. This online presence of artwork is important for art collectors, educators, and students alike for convenient viewing and analysis of pieces from our history. An accurate way to automatically classify paintings will help museums, curators, or collectors quickly organize digital collections. This will also help consumer art appreciators to quickly gain information and insights about a certain painting they are curios about.
+In the age of the internet, digital copies of art and paintings have become extensive - from the works of old masters to creations of modern painters. This online presence of artwork is important for art collectors, educators, and students alike for convenient viewing and analysis of pieces from our history. An accurate way to automatically classify paintings will help museums, curators, or collectors quickly organize digital collections. This will also help consumer art appreciators to quickly gain information and insights about a certain painting they are curious about.
 
 This web app can identify paintings as old as 1471 with styles ranging from **renaissance**, **romanticism**, **baroque**, **impressionism**, and **post-impressionism**. This can also classify a modern painting and see whose style it most resembles to. 
 
 <h2>Web App</h2>
 
-<h3> Here's a screen record video on how it works</h3>
+<h3> Here's a screen recording video of how it works:</h3>
 
 You can choose an image file of any painting from your desktop/device. 
 
@@ -41,4 +41,4 @@ Then go to `127.0.0.1:5000` on your browser.
 
 
 <h2>Acknowledgements</h2>
-<p>I would like to thank Kyle Ong for his patience in explaining JavaScript to me. Without it, I wouldn't have been able to build this project.</p>
+<p>I would like to thank my friends Kyle Ong, Raph Ongleo, and Jeddah Gracera for their patience in explaining JavaScript to me. Without it, I wouldn't have been able to build this project.</p>

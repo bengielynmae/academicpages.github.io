@@ -11,7 +11,7 @@ collection: portfolio
 # In The News: Predicting Winning Political Candidates From News Tone
 
 ## Summary
-This study used the Global Dataset of Events, Language, and Tone (GDELT) to forecast the result of the US 2016 presidential election. The dataset is composed of news around the world collected every 15 minutes. It also includes the identities of those involved and the tone of language used. A four-way race was considered in this work and 102.9 GB of data from GDELT was wrangled to perform the analysis. This was accessed on the Amazon Web Service (AWS). A time series of article mentions for each of the candidates were generated. The daily poll results during the campaign period was used as a target variable for training the model. In this work, it was demonstrated that data from news coverage can accurately predict which candidate will win. 
+This study used the Global Dataset of Events, Language, and Tone (GDELT) to forecast the result of the US 2016 presidential election. The dataset is composed of news around the world collected every 15 minutes. It also includes the identities of those involved and the tone of language used. A four-way race was considered in this work and 102.9 GB of data from GDELT was wrangled to perform the analysis. This was accessed using the Amazon Web Service (AWS). A time series of article mentions for each of the candidates were generated. The daily poll results during the campaign period was used as a target variable for training the model. In this work, it was demonstrated that data from news coverage can accurately predict which candidate will win. 
 
 
 ## Introduction
@@ -30,7 +30,7 @@ Taking advantage of this trend, many groups of researchers and programmers have 
 
 While online literatures abound on using Twitter analytics for "nowcasting" the results of the polls, there are very few mentions of utilizing the Global Database of Events, Language, and Tone (GDELT) when making such a political forecast, if at all. **GDELT is an immensely rich pool of data, containing some trillions of rows of various types of information from different parts of the world.** A more detailed explanation of GDELT is provided at the latter part of this notebook.
 
-In this project, the authors intend to explore the potential predictive power of online news coverage with respect to the winnability of a certain political candidate. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters. Since news articles, as they should be, are technically less biased as compared to tweets or posts on social media, it may be inferred that the model would give a more reliable output.
+**In this project, the authors intend to explore the potential predictive power of online news coverage with respect to the winnability of a certain political candidate. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters.** Since news articles, as they should be, are technically less biased as compared to tweets or posts on social media, it may be inferred that the model would give a more reliable output.
 
 
 ## Methods and Data Exploration
