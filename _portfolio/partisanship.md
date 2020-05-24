@@ -5,87 +5,41 @@ collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a final project output for our <b>Network Science</b> course under Prof. Erika Legara in the M.Sc. Data Science program. This was presented to class in March 2020.</p>
+<p>This was a final project output for our <b>Network Science</b> course under Prof. Erika Legara in the M.Sc. Data Science program. In this study, we examine the trend in partisanship of the US Congress over the past 72 years. Using a network approach, we look at the polarity/cooperation of house and senate members across party lines. This was presented to class in March 2020.</p>
 
+<br><br>
 # A Network Analysis on Partisanship in Congressional Rollcall Votes
+
+
+## Summary
+
+
+## Dataset
+The dataset was collected from the UCLA Department of Political Science's Voteview initiative that tracks every Congressional rollcall votte in the history of the United States Congress. It contains information such as the members of both chambers of Congress for every Congress, the political affiliations of each member, and a record of every rollcall vote called along the votes of every member. The dataset is available [here](https://kaggle.com/voteview/congressional-voting-records#HSall_rollcalls.csv). Explanations are also available for every file: [rollcall](https://voteview.com/articles/data_help_rollcalls), [votes](https://voteview.com/articles/data_help_votes), [parties](https://voteview.com/articles/data_help_parties), and [members](https://voteview.com/articles/data_help_members)
+
+## Preprocessing
+
+We want to convert the data into a matrix such that:
+* each row = `congressman`
+* each column = `bill`
+* values = `vote` of that congressman for that bill
+  * all positive votes will be 1 and all negative votes will be-1, everything else in NaN 
+
+A network for each chamber of congress (House and Senate) has to be constructed where the nodes represent each member and the edges tell how similarly each member votes with another member. The network is expected to be a fully connected network since an edge exists between all possible pairs of members. In this work, blue nodes are the Democrats, red nodes are the Republicans, and gray nodes are other parties.
 
 ### Packages and Libraries
 ```python
 
 import networkx as nx
 import community
-
 from sklearn.metrics.pairwise import cosine_similarity
 from scipy.spatial.distance import euclidean, cosine
 from scipy.stats import zscore, kurtosis
 ```
 
-
-## Data Description:
-
-Data Link: https://www.kaggle.com/voteview/congressional-voting-records#HSall_rollcalls.csv
-<br>
-Explanations:
-* `rollcall` - https://voteview.com/articles/data_help_rollcalls
-* `votes` - https://voteview.com/articles/data_help_votes
-* `parties` - https://voteview.com/articles/data_help_parties
-* `members` - https://voteview.com/articles/data_help_members
-
-| cast_code | Description |
-| --- | --- |
-| 0	| Not a member of the chamber when this vote was taken |
-| 1	| Yea |
-| 2	| Paired Yea |
-| 3	| Announced Yea |
-| 4	| Announced Nay |
-| 5	| Paired Nay |
-| 6	| Nay |
-| 7	| Present (some Congresses) |
-| 8	| Present (some Congresses) |
-| 9 | Not Voting (Abstention) |
-
-
-## Preprocessing
-We want to convert the data into a matrix such that:
-* each row = `congressman`
-* each column = `bill`
-* values = vote of that congressman for that bill
-  * all positive votes will be 1 and all negative votes will be-1, everything else in NaN 
-
 **Convert to Network structure using `Congress` Class**
 
-
-```python
-# all the votes that are positive (Yea) will be 1, all negative (Nay) will be -1, everything else is NaN
-vote_converter = {0:np.nan, 1:1, 2:1, 3:1, 4:-1, 5:-1, 6:-1, 7:np.nan, 8:np.nan, 9:np.nan}
-
-# we convert the party codes for democratic(blue), and republican(red)
-party_color = {100:'darkblue', 200:'maroon'}
-```
-
-
-```python
-def person_converter(df):
-    return dict(zip(df['icpsr'].unique(), [i for i in range(len(df['icpsr'].unique()))]))
-```
-
-
-```python
-def create_trans_matrix(df, party=None):
-    converter = person_converter(df)
-    df = df.merge(members[['congress', 'icpsr', 'party_code']], on=['congress', 'icpsr'])
-    df['vote'] = df['cast_code'].map(vote_converter)
-    df['person'] = df['icpsr'].map(converter)
-    df['party_color'] = df['party_code'].map(party_color)
-    
-    if party is not None:
-        party = 100 if party == 'dem' else 200 
-        return df[df['party_code']==party].pivot_table(values='vote', 
-                            index='person', columns='rollnumber').to_numpy()
-    else:
-        return df.pivot_table(values='vote', index='person', columns='rollnumber')
-```
-
+But first, we define helper functions to create an adjacency matrix containing the cosine similarity score between members of congress. 
 
 ```python
 def create_cos_matrix(data):
@@ -128,7 +82,6 @@ def create_cos_matrix(data):
     return tally, tally_sim, tally_count
 ```
 
-
 ```python
 def clean_network(G):
     for u in G.nodes:
@@ -142,7 +95,7 @@ def clean_network(G):
                 pass
     return G
 ```
-
+To detemine the edge weights, we look at the cosine similarity of the voting pattern of each member of congress against another member. This enables us to actually identify the directionality of the connection - whether it's positive or negative. Then we feed it to the package `networkx` to create the fully connected undirected network representation of the voting patterns of a given Congress. This is repeated for each chamber of the 80th - 115th Congresses. 
 
 ```python
 class Congress():
@@ -208,7 +161,7 @@ class Congress():
             
 ```
 
-Get all congresses:
+**Get all congresses:**
 
 ```python
 net = {}
@@ -216,15 +169,7 @@ for congress in tqdm(range(80,116)):
     net[congress] = Congress(congress)
 ```
 
-Load pickle file of results:
-
-
-```python
-net = pd.read_pickle('networks3.pkl')
-```
-
 We need to remove the edges that are NaN.
-
 
 ```python
 for i in tqdm(range(80,116)):
@@ -238,39 +183,18 @@ for i in tqdm(range(80,116)):
                 net[i].house.remove_edge(node, k)
 ```
 
-
-### Defining Helper Functions
-
-
-```python
-def get_average_edges(G, weight='cosdist'):
-    return [(i, np.nanmean([v[weight] for k,v in dict(G[i]).items()])) \
-            for i in G.nodes]
-```
+### Average Cosine Similarity Over Time (House and Senate)
+<br>
 
 
-```python
-def get_icpsr(G, node, return_name=False):
-    if return_name:
-        return members[members['icpsr']==G.nodes[node]['icpsr']].drop_duplicates(subset=['icpsr'])
-    else:
-        return G.nodes[node]['icpsr']
-```
+![png](/images/partisanship/ave-cossim-senate.png)
 
 
-```python
-def plot_network(G, weight='cossim', labels=False, save=None):
-    pos = nx.fruchterman_reingold_layout(G, weight=weight)
-    fig, ax = plt.subplots(dpi=300, figsize=(10,10))
-    ax.axis('off')
-    nx.draw_networkx_nodes(G, pos, node_size=150, node_color=[G.node[i]['party_color'] if not G.node[i]['party_color'] \
-                        not in ['darkblue', 'maroon']  else 'gray' for i in G.nodes], alpha=0.7);
-    nx.draw_networkx_edges(G, pos, alpha=0.05, edge_color='lightgray', width=0.5);
-    if labels:
-        nx.draw_networkx_labels(G, pos, font_color="white", font_size=8)
-    if save is not None:
-        fig.savefig(save+'.png', transparent=True);
-```
+![png](/images/partisanship/ave-cossim-house.png)
+
+
+### Cooperation between parties
+This is measured by getting the average cosine distance between each member of one party against each member of the opposing party. Do this for all members of the first party, and get the average.
 
 
 ```python
@@ -296,19 +220,6 @@ def get_cooperation(G, chamber, weight='cosdist'):
     
     return np.nanmean(scores)
 ```
-
-### Average Cosine Similarity Over Time (House and Senate)
-
-
-![png](/images/partisanship/ave-cossim-senate.png)
-
-
-![png](/images/partisanship/ave-cossim-house.png)
-
-
-### Cooperation between parties
-This is measured by getting the average cosine distance between each member of one party against each member of the opposing party. Do this for all members of the first party, and get the average.
-
 
 ![png](/images/partisanship/coop-score.png)
 
@@ -350,6 +261,11 @@ for i in tqdm(range(80,116)):
 
 ### Outliers
 
+```python
+def get_average_edges(G, weight='cosdist'):
+    return [(i, np.nanmean([v[weight] for k,v in dict(G[i]).items()])) \
+            for i in G.nodes]
+```
 
 ```python
 def get_outliers(G, threshold=2):

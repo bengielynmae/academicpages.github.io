@@ -7,6 +7,7 @@ collection: portfolio
 <h2>Overview</h2>
 <p>This was a final project output for our <b>Big Data and Cloud Computing</b> course under Prof. Christian Alis in the M.Sc. Data Science program. The course requires students to wrangle big data and get familiar with cloud computing services. One of the motivations of this project is to devise an alternative measure to social weather surveys in gauging the sentiment of voters. This was presented to the public in December 2019.</p>
 
+<br><br>
 # In The News: Predicting Winning Political Candidates From News Tone
 
 ## Summary
