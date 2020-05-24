@@ -344,6 +344,7 @@ ax[1].set_title('Congress 115', fontsize=20);
 fig.savefig('Cong111vs115.png', transparent=True)
 ```
 
+<img src='/images/partisanship/majority-party.png' width='500' height='600'>
 ![png](/images/partisanship/majority-party.png)
 
 ## The evolution of the networks over time is shown below:
@@ -351,13 +352,13 @@ fig.savefig('Cong111vs115.png', transparent=True)
 **The Senate** 
 
 <video width='640' height='480' controls>
-  <source src="/files/evolution-senate.mp4">
+  <source src="/files/senate-network.mp4">
 </video>
 <br><br>
 **House of Representatives**
 
 <video width='640' height='480' controls>
-  <source src="/files/evolution-house.mp4">
+  <source src="/files/house-network.mp4">
 </video>
 
 
