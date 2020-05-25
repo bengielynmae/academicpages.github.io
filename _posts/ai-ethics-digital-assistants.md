@@ -1,7 +1,7 @@
 ---
 title: 'AI Ethics on Voice-Activated Digital Assistants'
-date: 2020-04-27
-permalink: /posts/2020/04/ai-ethics-digital-assistants/
+date: 2020-05-25
+permalink: /posts/2020/05/ai-ethics-digital-assistants/
 tags:
   - data science
   - ai ethics
