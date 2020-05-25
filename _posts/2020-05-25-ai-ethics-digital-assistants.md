@@ -10,20 +10,20 @@ tags:
 
 <img src='/images/posts/alexa.png' width='680' height='380'>
 
-    <i>Abby is expecting a guest, but she needs to run a quick errand, so she leaves instructions to Troy, her digital home assistant, instead. The guest arrives and once recognized by the security camera on the porch, Troy unlocks the door, allows the guest in and politely says “Welcome”. Troy explains to the guest that Abby is on the way and will be home soon. Through the bluetooth speakers, Troy streams music from the guest’s profile in Abby’s Spotify friend network. The digital assistant then offers the guest orange juice, coincidentally her usual preference whenever she comes over. After completing the welcoming service, Troy would go silent and wait on the guest while they patiently expect Abby to arrive soon.</i>
+<i>Abby is expecting a guest, but she needs to run a quick errand, so she leaves instructions to Troy, her digital home assistant, instead. The guest arrives and once recognized by the security camera on the porch, Troy unlocks the door, allows the guest in and politely says “Welcome”. Troy explains to the guest that Abby is on the way and will be home soon. Through the bluetooth speakers, Troy streams music from the guest’s profile in Abby’s Spotify friend network. The digital assistant then offers the guest orange juice, coincidentally her usual preference whenever she comes over. After completing the welcoming service, Troy would go silent and wait on the guest while they patiently expect Abby to arrive soon.</i>
 
 From the scenario above, it’s amazing how a non-human assistant is capable of accurately validating the identity of a person and independently managing appliances at home. This is an example of an AI companion we imagined many years ago that is recently slowly turning into reality. From being able to exchange text messages with AI chatbots, today we can actually speak to it and have it respond like a human personal assistant would. Apple’s Siri, Microsoft’s Cortana, and Amazon’s Alexa are the closest thing we have to getting our own Jarvises that we can take everywhere in our pockets. Activated by voice commands, they can play soothing background music for us, schedule appointments, check the weather, send texts, make restaurant reservations, and so much more including even coming up with a grocery list. Needless to say, users access these digital assistants everywhere — from their homes, offices, schools, and cars. To a certain extent, they are comparable to and can even replace human assistants which should supposedly be discreet and serve only for the good of its owner. In order for digital assistants to return a useful response, the information from commands and questions told by users are parsed using AI.
 
 Amazon, Apple, and Google are the biggest companies leading in the development of these virtual assistants and they try to make these interfaces more life-like. This is only possible through more real-time collection of data that can be contextualized by AI. However, most of this collected information are potentially identifiable and possibly sensitive information. Data on users’ searches, queries, commands, and locations is used to build an accurate profile of their habits, whereabouts, and preferences. This technological innovation is being developed for the purpose of convenience, but it requires the tradeoff of personal privacy and security. Just like almost everything on the internet, user requests and behavior will leave a trail of breadcrumbs. This could be a great thing but only when used appropriately and responsibly.
 
-**Recent Updates**
+**Recent Updates**<br>
 These companies are trying to develop an improved AI assistant that could guess what users are about to ask before they even say it. For example, applications or interfaces that would notify them about traffic jams, grocery queues, or restaurant schedules on appropriate situations. They are also planning to release an improved feature that would show you recommendations every chance it deems necessary. For example, when you receive a message or photo from a friend, it will suggest a response that you would most likely say, and you simply need to tap to send those mimicked messages. For them to have been able to make accurate and suitable suggestions, it should have been learning how you do conversations, and this means that it has been spying on you.
 
 **Behavioral Concerns**
-Behavioral Concerns
+<br>
 Digital assistants can record and save conversations, photos, and many other pieces of sensitive information including user location. They use this data to improve themselves overtime which may lead to them gaining a wider universe of information — even more than what people actually know or remember. How companies that own these algorithms use and share the collected data is not the only source of concern, it is also alarming how dangerous and vulnerable these applications are to process and technical failures. These failures open the opportunity for hacking that could result to breach of privacy. Another concern would be these digital assistants are not limited to collecting and recording data of their owners and authorized users. They may also collect unauthorized personal data from the owner’s friends or family members.
 
-**Required Etiquette**
+**Required Etiquette**<br>
 In our example above, Troy needed to process different sources of information in order to be a smart host to the guest. The information used does not only belong to Abby but also to her guest. It raises the question of whether or not Troy (and even Abby) invaded the guest’s privacy. Even with digital technologies, we are required to have social and ethical responsibility to each other. These technologies have been rapidly growing and the society has not been able to keep up yet in terms of redefining social norms. Would it have been more polite for Abby to inform her guest that she owns a digital home assistant? Would it be ethical for guests to inquire about the presence of digital home assistants? Would it be acceptable for guests to ask the host to deactivate it temporarily? This is not very different from business meeting participants who would like to be informed if the session is being recorded. No matter how advanced we are today, etiquette rules stay the same — they require consideration, honesty, and kindness.
 
 This application may sound amazing and is very convenient, but people should not forget that privacy is a fundamental human right that we all should work together for to maintain. Users, especially non-technically savvy people, should be educated on the potential risks of digital innovations. The critical role for governments involves coming up with and implementing stronger privacy laws that covers issues associated with digital assistants. Right now, tech giants such as Amazon, Apple, and Google are the ones setting the rules. As a community, we should be proactive in staying informed and keeping our private information secure by taking actions when necessary. 
@@ -55,12 +55,13 @@ The slave-master mindset created by the digital assistant technology may be mold
 
 *Principle: Non-maleficence*
 
-<br><br>
+<br><br>• • •<br>
 *As part of the final requirement in our AI Ethics class at the Asian Institute of Management, we were to write about a specific AI application and list down the potential ethical and/or legal issues that could arise from it.*
 
 *To learn about the five principles for ethical AI, check this [article](https://hdsr.mitpress.mit.edu/pub/l0jsh9d1/release/6) that explains the unified framework.*
 
-**Reference**
+**Reference**<br>
 [AI Ethics Personal Assistants Like Alexa, Siri, and Google](https://medium.com/%C3%A9clair%C3%A9/ai-ethics-personal-assistants-like-alexa-siri-and-google-home-d54ba05dadd3)
 
-<font size='4'>This [post](https://medium.com/@bengielyn/ai-ethics-on-voice-activated-digital-assistants-bb2ea0e3fb80) is also available in my medium account.</font>
+<br>• • •<br>
+This [post](https://medium.com/@bengielyn/ai-ethics-on-voice-activated-digital-assistants-bb2ea0e3fb80) is also available on my medium account.
