@@ -14,7 +14,7 @@ Philippines is actually home to one of the densest cities in the world. The popu
 
 <h3>Economic Effect</h3>
 
-Urbanization of an area positively impacts its economic growth. It creates more opportunities for people and they earn more than they can in rural areas. Cities infrastructure is also much greater that that of rural areas, increasing economic output and creating stronger connection links enhancing trade. On the flip side, urbanization also allows for increased population which the raises costs for fuel, food, basic necessities and thus raising the cost of living in those areas. 
+Urbanization of an area positively impacts its economic growth. It creates more opportunities for people and they earn more than they could in rural areas. Infrastructure is also much greater than that of rural areas thereby increasing economic output and creating stronger connection links which enhances trade. On the flip side, urbanization also allows for increased population which raises costs for fuel, food, basic necessities and thus raising the cost of living in those areas. 
 
 The Philippines, from 2010 to 2017, has experienced a steady GDP growth rate of 6-7%. However, data tells us that 62% of the country's economic activity for those years is concentrated in the **National Capital Region**, **Calabarzon**, and **Central Luzon**. 
 
@@ -22,11 +22,11 @@ The Philippines, from 2010 to 2017, has experienced a steady GDP growth rate of 
 
 <h3>Centralization Effect</h3>
 
-As more people move towards urban centers, these cities are starting to struggle with meeting the demands of a growing population. More importantly, they don't really have the land capacity anymore. This usually then overflows to edge cities around them and to other neighboring areas. It can be noticed that nearly all new developments are located in Metro Manila and it's neighboring provinces of Pampanga, Bulancan, Cavite, and Laguna. However, not everyone in cities have equal opportunities; the access to housing, livelihood, and social services is not equitable and affordable. In reality, urbanization is more likely to impede social inclusion more than anything else especially for those who are economically disadvantaged. 
+As more people move towards urban centers, these cities are starting to struggle with meeting the demands of a growing population. More importantly, they don't really have the land capacity anymore. This usually then overflows to edge cities around them and to other neighboring areas. It can be noticed that nearly all new developments are located in Metro Manila and it's neighboring provinces of Pampanga, Bulacan, Cavite, and Laguna. However, not everyone in cities have equal opportunities; the access to housing, livelihood, and social services is not equitable and affordable. In reality, urbanization is more likely to impede social inclusion more than anything else especially for those who are economically disadvantaged. 
 
 <h3>Adverse Effects</h3>
 
-The adverse effects can also be observed through the years. It can be seen that employmnet has shifted from agriculture to services since 1995. This just goes to show that rural areas, where agriculture activities are present, are losing its people to cities where labor for services is in high demand. Moreover, to keep up with the growing population, these cities need more residential and industrial areas. In Cavite, a neighboring rural area of Metro Manila, more than 12 hectares of agricultural land was converted into subdivisions and factories. In effect, there's a decrease in supply of food while the demand stays high. This now this leads to prices increasing.
+The adverse effects can also be observed through the years. It can be seen that employmnet has shifted from agriculture to services since 1995. This just goes to show that rural areas, where agriculture activities are present, are losing its people to cities where labor for services is in high demand. Moreover, to keep up with the growing population, these cities need more residential and industrial areas. In Cavite, a neighboring rural area of Metro Manila, more than 12 hectares of agricultural land was converted into subdivisions and factories. In effect, there's a decrease in supply of food while the demand stays high. This now leads to prices increasing.
 
 <img src='/images/dvs/employment-shift.png'>
 
