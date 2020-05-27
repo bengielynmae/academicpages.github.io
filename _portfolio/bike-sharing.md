@@ -1,22 +1,23 @@
 ---
-title: "Forecasting Bike Sharing Behavior: NN vs Machine Learning"
-excerpt: "This mini project aims to compare how neural networks compare to other machine learning models in forecasting count of bike share rentals.<br/><br><img src='/images/bike-share/cover.png'>"
+title: "Comparing Neural Network and Machine Learning Models"
+excerpt: "This mini project aims to determine how neural networks compare to other machine learning models in forecasting count of bike share rentals.<br/><br><img src='/images/bike-share/cover.png'>"
 collection: portfolio
 ---
 
 <h2>Overview</h2>
-<p>This was a lab exercise for our <b>Deep Learning</b> course under Prof. Chris Monterola in the M.Sc. Data Science program. In this study, we wish to see how NNs compare with other machine  learning algorithms when applied on the Bike Sharing dataset (UCI Machine Learning Repository). A uniform preprocessing method will be used for both.</p>
+<p>This was a lab exercise for our <b>Deep Learning</b> course under Prof. Chris Monterola / Prof. Erika Legara in the M.Sc. Data Science program. In this study, we wish to see how NNs compare with other machine  learning algorithms when applied to the Bike Sharing dataset (UCI Machine Learning Repository). A uniform preprocessing method will be used for both.</p>
+<br><br>
 
 # Forecasting Bike Sharing Behavior Using NN and ML Models
-#### A Mini Project
+### A Mini Project
 
-In performing data analysis, a common task is to search for the most appropriate algorithm/s to best fit a given problem or system. In this work, the superior performance by a **neural network** in forecasting the number of bicycle-sharing users over other machine learning models is demontrated. The architecture used is a  simple 3-layer fully connected feed-forward network with 30 hidden nodes. The data includes historical count, datetime information, and weather figures. To use as comparison, **Linear Regression**, **Decision Tree**, **Random Forest**, and **Gradient Boosting** machine learning methods were explored. 
+In performing data analysis, a common task is to search for the most appropriate algorithm/s to best fit a given problem or system. In this work, the superior performance by a **Neural Network** in forecasting the number of bicycle-sharing users over other machine learning models is demontrated. The architecture used is a  simple 3-layer fully connected feed-forward network with 30 hidden nodes. The data includes historical count, datetime information, and weather figures. To use as comparison, **Linear Regression**, **Random Forest**, and **Gradient Boosting** machine learning algorithms were were also applied. 
 
 ## Background & Dataset
 
-Bicycle-sharing is a short-term rental service for individuals. It is commonly used as a mode of transportation in small and closed communities such as school campuses. However, bicycle-sharing has started to become a mainstream mode of public transportation in some countries. Other than it's sustainability and benefits to the environment, it is convenient to travel on. You don't get stuck in traffic, you don't need to look for parking, and you can easily carry your bicycle around. Additionally, it is relatively cheaper and it reduces congestion. This short project aims to predict the future demand of bike rentals using historical data and other variables affecting the odds of people availing this service. This inlcudes the hour of day, day of the weak, month of year, season, temperature, and weather data. Different Machine Learning techniques will be used along with a simple architecture of a Neural Network then we identify which gives the best performance. 
+Bicycle-sharing is a short-term rental service for individuals. It is commonly used as a mode of transportation in small and closed communities such as school campuses. However, bicycle-sharing has started to become a mainstream mode of public transportation in some countries. Other than it's sustainability and benefits to the environment, it is convenient to travel on. You don't get stuck in traffic, you don't need to look for parking, and you can easily carry your bicycle around. Additionally, it is relatively cheaper and it reduces congestion. This short exercise aims to predict the future demand of bike rentals using historical data and other variables affecting the odds of people availing this service. This inlcudes the *hour of day*, *day of week*, *month of year*, *season*, *temperature*, and *weather* data. Different Machine Learning techniques will be used along with a simple architecture of a Neural Network then we identify which gives the best performance. 
 
-The dataset can be found in this link - it contains time-series rental and weather information for years 2011 and 2012. This has been conllected from a bikeshare system where a member can rent a bike from one location and return it at a different location. This can also be potentially used for sensing mobility in an area. The available features in the dataset are listed below. You can find more information on it in the `UCI` site.  
+The dataset can be found in this [link](https://archive.ics.uci.edu/ml/datasets/bike+sharing+dataset) - it contains time-series rental and weather information for years 2011 and 2012. This has been collected from a bikeshare system where customers can rent a bike from one location and return it at a different location. This can also be potentially useful for sensing mobility in an area. You will find more information about the different variables on the `UCI` site.  
 
 
 ```python
@@ -28,17 +29,10 @@ import matplotlib.pyplot as plt
 import datetime
 ```
 
-
-```python
-df_bike = pd.read_csv('hour.csv')
-```
-
-
 ```python
 df_bike.info()
 ```
 
-    <class 'pandas.core.frame.DataFrame'>
     Int64Index: 17379 entries, 0 to 17378
     Data columns (total 17 columns):
      #   Column      Non-Null Count  Dtype         
@@ -416,34 +410,25 @@ season = dummy[['season', 'cnt']+num_feat].groupby('season', axis=0).mean()
 hour = dummy[['hr', 'cnt']+num_feat].groupby('hr', axis=0).mean()
 ```
 
+We plot the count of bike rentals across the whole dataset. We can see a general upward trend from 2011 to 2012. Expectedly, there are spikes and dips in the plot which may correspond to certain seasons or events. Now let's zoom in on this dataset. 
 
 ![png](/images/bike-share/daily.png)
 
-
-We plot the count of bike rentals across the whole dataset. We can see a general upward trend from 2011 to 2012. Expectedly, there are spikes and dips in the plot which may correspond to certain seasons or events. Now let's zoom in on this dataset. 
-
+To look at the daily trend, the counts per hour of day were averaged over the entire dataset. It can be observed that daily peaks are at 8AM and 5PM in the afternoon. These are most likely when people go to and leave the office / school respectively. 
 
 ![png](/images/bike-share/by-hour.png)
 
-
-To look at the daily trend, the counts per hour of day were averaged over the entire dataset. It can be observed that daily peaks are at 8AM and 5PM in the afternoon. These are most likely when people go to and leave the office / school respectively. 
-
-
-![png](/images/bike-share/week-month.png)
-
-
 We can see here that it also varies depending on the day of the weak. It is lowest on Sundays when people are assumed to be at home with their families. It is also visibile that from the month of June until September, there is a sustained high number of bike rentals compared to the rest of the year. These are summer months and a comfortable weather for biking. 
 
+![png](/images/bike-share/week-month.png)
 
 ```python
 season.reset_index(inplace=True)
 season['season'] = ['winter', 'spring', 'summer', 'fall']
 ```
+Here, we confirm that it is indeed highest during the summer and lowest in winter. These informaion could help bikeshare companies in forecasting the demand or influx of customers. They could also accordingly schedule the maintenance of the bicycles. 
 
 ![png](/images/bike-share/season.png)
-
-
-Here, we confirm that it is indeed highest during the summer and lowest in winter. These informaion could help bikeshare companies in forecasting the demand or influx of customers. They could also accordingly schedule the maintenance of the bicycles. 
 
 ## Data Preprocessing
 
@@ -610,8 +595,6 @@ print(f"r2: {round(r_test*100)} | MAPE: {round(mape_test)} ")
 
     r2: 73.0 | MAPE: 72 
 
-
-### Plotting Predicted vs Actual
 
 ```python
 df_bike_test = df_bike[-20*24:]
